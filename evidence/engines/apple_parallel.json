@@ -1,0 +1,59 @@
+{
+ "engine": "apple_parallel",
+ "frames": 320,
+ "tag": "wc_final",
+ "first_frame": "f_0001.jpg",
+ "last_frame": "f_0320.jpg",
+ "pipeline": "full + 3x2 tiles + zh (baseline)",
+ "settings": {
+  "1": [
+   {
+    "wall_s": 344.5,
+    "frames_per_sec": 0.929,
+    "mean_frame_latency_s": 1.077
+   },
+   {
+    "wall_s": 349.1,
+    "frames_per_sec": 0.917,
+    "mean_frame_latency_s": 1.091
+   }
+  ],
+  "2": [
+   {
+    "wall_s": 178.1,
+    "frames_per_sec": 1.797,
+    "mean_frame_latency_s": 1.106
+   },
+   {
+    "wall_s": 179.2,
+    "frames_per_sec": 1.786,
+    "mean_frame_latency_s": 1.112
+   }
+  ],
+  "4": [
+   {
+    "wall_s": 123.2,
+    "frames_per_sec": 2.596,
+    "mean_frame_latency_s": 1.513
+   },
+   {
+    "wall_s": 132.0,
+    "frames_per_sec": 2.425,
+    "mean_frame_latency_s": 1.624
+   }
+  ],
+  "8": [
+   {
+    "wall_s": 99.2,
+    "frames_per_sec": 3.225,
+    "mean_frame_latency_s": 2.387
+   },
+   {
+    "wall_s": 101.8,
+    "frames_per_sec": 3.142,
+    "mean_frame_latency_s": 2.445
+   }
+  ]
+ },
+ "notes": "spawn Pool(n).map over frames; each setting run twice back to back; cpu_count=10"
+}

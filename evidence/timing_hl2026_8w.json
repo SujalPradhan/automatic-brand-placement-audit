@@ -1,0 +1,57 @@
+{
+ "video": "Vini Jr and Saibari Star In Brazil v Morocco Deadlock _ 2026 World Cup EXTENDED HIGHLIGHTS_720p60.mp4",
+ "seconds": 3600,
+ "workers": 8,
+ "started": "2026-10-15 08:41:44",
+ "extract_s": 9.4,
+ "frames": 600,
+ "ocr_s": 115.3,
+ "aggregate_s": 0.0,
+ "brands_found": 28,
+ "seconds_with_any_brand": 255,
+ "top_brands": [
+  [
+   "Visa",
+   50
+  ],
+  [
+   "Lenovo",
+   40
+  ],
+  [
+   "Aramco",
+   37
+  ],
+  [
+   "Globant",
+   37
+  ],
+  [
+   "Hyundai",
+   35
+  ],
+  [
+   "Kraken",
+   29
+  ],
+  [
+   "Betano",
+   26
+  ],
+  [
+   "InterRapidisimo",
+   23
+  ]
+ ],
+ "total_s": 124.7,
+ "mean_latency_s": 1.49,
+ "frames_per_s_by_600_frame_block": [
+  5.21
+ ],
+ "video_seconds": 600,
+ "cost_usd_host_prorata": 0.043,
+ "total_s_per_video_hour": 748.2,
+ "cost_usd_per_video_hour": 0.256,
+ "cost_usd_extract": 0.003,
+ "cost_usd_ocr": 0.039
+}

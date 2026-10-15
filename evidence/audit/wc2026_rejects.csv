@@ -1,0 +1,29 @@
+brand,start,end,reason
+Adidas,574,575,crop shows Bank of America board
+BankOfAmerica,230,232,OCR matched 'UNITED STATES OF AMERICA' host board
+BankOfAmerica,435,437,OCR matched 'UNITED STATES OF AMERICA' host board
+Globant,106,112,OCR matched Aramco tagline 'GLOBAL ENERGY PARTNER'
+Globant,432,435,OCR matched Aramco tagline 'GLOBAL ENERGY PARTNER'
+Globant,499,505,OCR matched Aramco tagline 'GLOBAL ENERGY PARTNER'
+Globant,520,521,OCR matched Aramco tagline 'GLOBAL ENERGY PARTNER'
+Lays,125,125,Arabic fan banner
+Lays,131,131,Arabic fan banner
+Lays,168,168,OCR fragment of QATAR AIRWAYS
+Lays,315,315,Arabic fan banner
+Lenovo,67,68,fan banner 'VERDE AMARELO'
+Lenovo,76,76,fan banner 'VERDE AMARELO'
+Lenovo,347,348,no mark visible
+Lenovo,521,521,Aramco tagline
+Nubank,539,541,OCR matched 'BANK OF AMERICA'
+Nubank,544,544,OCR matched 'BANK OF AMERICA'
+Nubank,548,549,OCR matched 'BANK OF AMERICA'
+Nubank,562,563,OCR matched 'BANK OF AMERICA'
+Nubank,567,567,OCR matched 'BANK OF AMERICA'
+UPL,64,64,OCR matched 'PLAY.FIFA.COM'
+UPL,67,69,OCR matched 'PLAY.FIFA.COM'
+UPL,73,73,OCR matched 'PLAY'
+UPL,410,410,FIFA graphic
+UPL,492,492,no mark visible
+Powerade,245,248,v3 lexicon: OCR matched 'Powered by' on the Lenovo AI referee-view graphic
+Powerade,453,456,v3 lexicon: OCR matched 'Powered by' on the Lenovo AI referee-view graphic
+Powerade,308,309,v3 lexicon: OCR matched 'Trade' in Kraken's 'Invest. Trade. Own.' board

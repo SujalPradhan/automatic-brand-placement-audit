@@ -1,0 +1,20 @@
+brand,start,end,reason
+Claro,41,41,OCR read the Coca-Cola script ('Ca Colar') as Claro
+CocaCola,55,55,VI track carried into a Visa-only shot
+DoorDash,15,15,VI track carried into a touchline close-up with no board
+Globant,15,15,VI track carried into a touchline close-up with no board
+Hisense,22,22,VI track carried into a close-up of the pitch
+Hisense,66,66,LED boards had switched to Aramco; no Hisense in frame
+Hyundai,105,105,VI box on the end-card transition graphic
+Lenovo,28,28,VI box on a Visa-only shot
+Lenovo,51,51,VI box on a Coca-Cola-only shot
+Lenovo,105,105,VI box on the end-card transition graphic
+Powerade,91,91,VI track carried into a close-up of the assistant referee
+QatarAirways,51,51,VI box on a Coca-Cola-only shot
+QatarAirways,96,96,VI box; frame shows Coca-Cola / Hyundai / Lenovo only
+UPL,97,97,OCR matched 'UP 2026' in 'FIFA WORLD CUP 2026'
+Visa,3,3,VI box on a Michelob Ultra shot
+Visa,30,30,VI box on a Fanatics shot
+Visa,51,51,VI box on a Coca-Cola-only shot
+Visa,61,61,VI track carried into a player close-up
+Visa,96,96,VI box; frame shows Coca-Cola / Hyundai / Lenovo only

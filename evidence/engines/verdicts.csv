@@ -1,0 +1,62 @@
+tag,t,brand,verdict,note
+wc2026,5,Adidas,false,board reads ADI PREDICTSTREET (mapped to wrong brand)
+wc2026,25,Lays,false,no such mark in crop (eye audit)
+wc2026,65,Lays,false,PLAY.FIFA.COM
+wc2026,75,Globant,false,no such mark in crop (eye audit)
+wc2026,75,UPL,false,no such mark in crop (eye audit)
+wc2026,75,Verizon,false,no such mark in crop (eye audit)
+wc2026,75,Vivo,false,no such mark in crop (eye audit)
+wc2026,105,Globant,false,GLOBAL ENERGY board
+wc2026,155,QatarAirways,false,no such mark in crop (eye audit)
+wc2026,165,Hisense,false,no such mark in crop (eye audit)
+wc2026,175,QatarAirways,false,no such mark in crop (eye audit)
+wc2026,175,UPL,false,no such mark in crop (eye audit)
+wc2026,195,Hisense,false,no such mark in crop (eye audit)
+wc2026,245,UPL,false,"Visa board, not UPL"
+wc2026,265,Powerade,false,Kraken tagline board
+wc2026,315,Powerade,false,Kraken tagline board
+wc2026,395,Lays,false,no such mark in crop (eye audit)
+wc2026,455,UPL,false,no such mark in crop (eye audit)
+wc2026,485,UPL,false,no such mark in crop (eye audit)
+wc2026,505,Lays,false,no such mark in crop (eye audit)
+wc2026,505,UPL,false,no such mark in crop (eye audit)
+wc2026,515,Hisense,false,no such mark in crop (eye audit)
+wc2026,535,Hyundai,true,Hyundai board visible
+wc2026,545,UPL,false,no such mark in crop (eye audit)
+wc2026,595,UPL,false,no such mark in crop (eye audit)
+wc2026_final,0,Adidas,false,no such mark in crop (eye audit)
+wc2026_final,0,UPL,false,no such mark in crop (eye audit)
+wc2026_final,60,Valvoline,false,no such mark in crop (eye audit)
+wc2026_final,70,Dove,false,no such mark in crop (eye audit)
+wc2026_final,70,Lays,false,no such mark in crop (eye audit)
+wc2026_final,95,Hisense,false,no such mark in crop (eye audit)
+wc2026_final,105,CocaCola,true,Coca-Cola board visible beside occluder
+wc_final,85,UPL,false,fuze tea board
+wc_final,85,Visa,false,no such mark in crop (eye audit)
+wc_final,95,Dove,false,no such mark in crop (eye audit)
+wc_final,95,Hisense,false,Wanda boards
+wc_final,105,UPL,false,no such mark in crop (eye audit)
+wc_final,115,UPL,false,no such mark in crop (eye audit)
+wc_final,125,Aramco,false,no such mark in crop (eye audit)
+wc_final,135,Betano,false,no such mark in crop (eye audit)
+wc_final,165,Hisense,false,crypto.com board
+wc_final,165,Lays,false,no such mark in crop (eye audit)
+wc_final,165,Vivo,false,no such mark in crop (eye audit)
+wc_final,175,Lays,false,no such mark in crop (eye audit)
+wc_final,215,Mengniu,false,unclear Chinese board; not Mengniu
+wc_final,235,Lays,false,no such mark in crop (eye audit)
+wc_final,245,Lays,false,no such mark in crop (eye audit)
+wc_final,255,Lays,false,no such mark in crop (eye audit)
+wc_final,275,Lays,false,no such mark in crop (eye audit)
+wc_final,285,Nubank,false,no such mark in crop (eye audit)
+wc_final,305,Powerade,false,no such mark in crop (eye audit)
+wc_final,385,Hisense,false,no such mark in crop (eye audit)
+wc_final,395,Visa,false,no such mark in crop (eye audit)
+wc_final,405,UPL,false,no such mark in crop (eye audit)
+wc_final,475,Lays,false,no such mark in crop (eye audit)
+wc_final,475,UPL,false,no such mark in crop (eye audit)
+wc_final,475,Visa,false,no such mark in crop (eye audit)
+wc_final,485,Lays,false,no such mark in crop (eye audit)
+wc_final,495,Visa,false,no such mark in crop (eye audit)
+wc_final,675,Hisense,false,no such mark in crop (eye audit)
+wc_final,695,DoorDash,false,no such mark in crop (eye audit)

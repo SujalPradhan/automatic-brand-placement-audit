@@ -1,0 +1,59 @@
+{
+ "video": "FULL-MATCH-Brazil-SnapYT.App.mp4",
+ "seconds": 3600,
+ "workers": 4,
+ "started": "2026-10-15 00:55:05",
+ "extract_s": 54.3,
+ "frames": 3600,
+ "ocr_s": 1185.8,
+ "aggregate_s": 0.0,
+ "brands_found": 37,
+ "seconds_with_any_brand": 2056,
+ "top_brands": [
+  [
+   "Visa",
+   284
+  ],
+  [
+   "Hisense",
+   276
+  ],
+  [
+   "Wanda",
+   269
+  ],
+  [
+   "Hyundai",
+   265
+  ],
+  [
+   "QatarAirways",
+   262
+  ],
+  [
+   "CryptoCom",
+   261
+  ],
+  [
+   "McDonalds",
+   228
+  ],
+  [
+   "Vivo",
+   227
+  ]
+ ],
+ "total_s": 1240.2,
+ "mean_latency_s": 1.31,
+ "frames_per_s_by_600_frame_block": [
+  3.25,
+  3.16,
+  3.05,
+  2.97,
+  2.95,
+  2.86
+ ],
+ "cost_usd_host_prorata": 0.424,
+ "cost_usd_extract": 0.019,
+ "cost_usd_ocr": 0.405
+}

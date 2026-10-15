@@ -1,0 +1,458 @@
+{
+ "tag": "full_por",
+ "label": "2018 group B · Portugal v Spain (full match)",
+ "short": "Portugal v Spain",
+ "duration": 6005,
+ "size": [
+  1920,
+  1080
+ ],
+ "segment_seconds": {
+  "pregame": 145,
+  "live_play": 5821,
+  "halftime_studio": 4,
+  "postgame": 35
+ },
+ "live_play_s": 5821,
+ "moments": [
+  {
+   "label": "Goal 1-0",
+   "start": 366,
+   "end": 411
+  },
+  {
+   "label": "Goal 1-1",
+   "start": 1552,
+   "end": 1597
+  },
+  {
+   "label": "Goal 2-1",
+   "start": 2778,
+   "end": 2823
+  },
+  {
+   "label": "Goal 2-2",
+   "start": 3513,
+   "end": 3558
+  },
+  {
+   "label": "Goal 2-3",
+   "start": 3771,
+   "end": 3816
+  },
+  {
+   "label": "Goal 3-3",
+   "start": 5490,
+   "end": 5535
+  }
+ ],
+ "key_moment_live_s": 270,
+ "brand_seconds_live": 4532,
+ "seconds_with_any_sponsor_live": 3566,
+ "seconds_with_any_sponsor_nonlive": 40,
+ "tier_share": {
+  "Partner": {
+   "live_s": 2790,
+   "share_pct": 61.6,
+   "goal_window_s": 80,
+   "goal_share_pct": 66.1
+  },
+  "Other": {
+   "live_s": 83,
+   "share_pct": 1.8,
+   "goal_window_s": 0,
+   "goal_share_pct": 0.0
+  },
+  "Sponsor": {
+   "live_s": 1620,
+   "share_pct": 35.7,
+   "goal_window_s": 41,
+   "goal_share_pct": 33.9
+  },
+  "Supporter": {
+   "live_s": 39,
+   "share_pct": 0.9,
+   "goal_window_s": 0,
+   "goal_share_pct": 0.0
+  }
+ },
+ "brands": {
+  "QatarAirways": {
+   "name": "Qatar Airways",
+   "country": "Qatar",
+   "tier": "Partner",
+   "visible_s_all": 456,
+   "visible_s": 451,
+   "appearances": 47,
+   "legible_s": 445,
+   "key_moment_s": 1,
+   "mean_area_pct": 3.456,
+   "share_visible_pct": 10.0,
+   "share_key_moment_pct": 0.8
+  },
+  "Visa": {
+   "name": "Visa",
+   "country": "USA",
+   "tier": "Partner",
+   "visible_s_all": 452,
+   "visible_s": 444,
+   "appearances": 41,
+   "legible_s": 430,
+   "key_moment_s": 3,
+   "mean_area_pct": 1.993,
+   "share_visible_pct": 9.8,
+   "share_key_moment_pct": 2.5
+  },
+  "Gazprom": {
+   "name": "Gazprom",
+   "country": "Russia",
+   "tier": "Partner",
+   "visible_s_all": 424,
+   "visible_s": 424,
+   "appearances": 76,
+   "legible_s": 403,
+   "key_moment_s": 17,
+   "mean_area_pct": 1.563,
+   "share_visible_pct": 9.4,
+   "share_key_moment_pct": 14.0
+  },
+  "Hisense": {
+   "name": "Hisense",
+   "country": "China",
+   "tier": "Sponsor",
+   "visible_s_all": 411,
+   "visible_s": 408,
+   "appearances": 55,
+   "legible_s": 399,
+   "key_moment_s": 10,
+   "mean_area_pct": 1.702,
+   "share_visible_pct": 9.0,
+   "share_key_moment_pct": 8.3
+  },
+  "Hyundai": {
+   "name": "Hyundai",
+   "country": "South Korea",
+   "tier": "Partner",
+   "visible_s_all": 401,
+   "visible_s": 396,
+   "appearances": 52,
+   "legible_s": 365,
+   "key_moment_s": 20,
+   "mean_area_pct": 1.974,
+   "share_visible_pct": 8.7,
+   "share_key_moment_pct": 16.5
+  },
+  "Adidas": {
+   "name": "Adidas",
+   "country": "Germany",
+   "tier": "Partner",
+   "visible_s_all": 383,
+   "visible_s": 368,
+   "appearances": 83,
+   "legible_s": 206,
+   "key_moment_s": 18,
+   "mean_area_pct": 0.44,
+   "share_visible_pct": 8.1,
+   "share_key_moment_pct": 14.9
+  },
+  "Vivo": {
+   "name": "Vivo",
+   "country": "China",
+   "tier": "Sponsor",
+   "visible_s_all": 367,
+   "visible_s": 366,
+   "appearances": 38,
+   "legible_s": 360,
+   "key_moment_s": 10,
+   "mean_area_pct": 1.865,
+   "share_visible_pct": 8.1,
+   "share_key_moment_pct": 8.3
+  },
+  "Wanda": {
+   "name": "Wanda",
+   "country": "China",
+   "tier": "Partner",
+   "visible_s_all": 338,
+   "visible_s": 332,
+   "appearances": 60,
+   "legible_s": 323,
+   "key_moment_s": 7,
+   "mean_area_pct": 2.149,
+   "share_visible_pct": 7.3,
+   "share_key_moment_pct": 5.8
+  },
+  "Budweiser": {
+   "name": "Budweiser",
+   "country": "Belgium/USA",
+   "tier": "Sponsor",
+   "visible_s_all": 301,
+   "visible_s": 300,
+   "appearances": 58,
+   "legible_s": 298,
+   "key_moment_s": 6,
+   "mean_area_pct": 0.639,
+   "share_visible_pct": 6.6,
+   "share_key_moment_pct": 5.0
+  },
+  "McDonalds": {
+   "name": "McDonald's",
+   "country": "USA",
+   "tier": "Sponsor",
+   "visible_s_all": 295,
+   "visible_s": 293,
+   "appearances": 51,
+   "legible_s": 254,
+   "key_moment_s": 15,
+   "mean_area_pct": 0.793,
+   "share_visible_pct": 6.5,
+   "share_key_moment_pct": 12.4
+  },
+  "Mengniu": {
+   "name": "Mengniu",
+   "country": "China",
+   "tier": "Sponsor",
+   "visible_s_all": 253,
+   "visible_s": 253,
+   "appearances": 40,
+   "legible_s": 253,
+   "key_moment_s": 0,
+   "mean_area_pct": 1.351,
+   "share_visible_pct": 5.6,
+   "share_key_moment_pct": 0.0
+  },
+  "CocaCola": {
+   "name": "Coca-Cola",
+   "country": "USA",
+   "tier": "Partner",
+   "visible_s_all": 208,
+   "visible_s": 207,
+   "appearances": 29,
+   "legible_s": 195,
+   "key_moment_s": 14,
+   "mean_area_pct": 1.04,
+   "share_visible_pct": 4.6,
+   "share_key_moment_pct": 11.6
+  },
+  "Powerade": {
+   "name": "Powerade",
+   "country": "USA",
+   "tier": "Partner",
+   "visible_s_all": 168,
+   "visible_s": 168,
+   "appearances": 20,
+   "legible_s": 166,
+   "key_moment_s": 0,
+   "mean_area_pct": 3.022,
+   "share_visible_pct": 3.7,
+   "share_key_moment_pct": 0.0
+  },
+  "UPL": {
+   "name": "UPL",
+   "country": "India",
+   "tier": "Other",
+   "visible_s_all": 48,
+   "visible_s": 43,
+   "appearances": 34,
+   "legible_s": 35,
+   "key_moment_s": 0,
+   "mean_area_pct": 0.313,
+   "share_visible_pct": 0.9,
+   "share_key_moment_pct": 0.0
+  },
+  "Alrosa": {
+   "name": "Alrosa",
+   "country": "Russia",
+   "tier": "Supporter",
+   "visible_s_all": 45,
+   "visible_s": 39,
+   "appearances": 19,
+   "legible_s": 29,
+   "key_moment_s": 0,
+   "mean_area_pct": 0.436,
+   "share_visible_pct": 0.9,
+   "share_key_moment_pct": 0.0
+  },
+  "QNB": {
+   "name": "QNB",
+   "country": "Qatar",
+   "tier": "Other",
+   "visible_s_all": 8,
+   "visible_s": 8,
+   "appearances": 8,
+   "legible_s": 7,
+   "key_moment_s": 0,
+   "mean_area_pct": 0.313,
+   "share_visible_pct": 0.2,
+   "share_key_moment_pct": 0.0
+  },
+  "Aramco": {
+   "name": "Aramco",
+   "country": "Saudi Arabia",
+   "tier": "Other",
+   "visible_s_all": 8,
+   "visible_s": 8,
+   "appearances": 8,
+   "legible_s": 8,
+   "key_moment_s": 0,
+   "mean_area_pct": 0.568,
+   "share_visible_pct": 0.2,
+   "share_key_moment_pct": 0.0
+  },
+  "Claro": {
+   "name": "Claro",
+   "country": "Mexico",
+   "tier": "Other",
+   "visible_s_all": 9,
+   "visible_s": 5,
+   "appearances": 5,
+   "legible_s": 5,
+   "key_moment_s": 0,
+   "mean_area_pct": 0.471,
+   "share_visible_pct": 0.1,
+   "share_key_moment_pct": 0.0
+  },
+  "Lenovo": {
+   "name": "Lenovo",
+   "country": "China",
+   "tier": "Other",
+   "visible_s_all": 4,
+   "visible_s": 4,
+   "appearances": 4,
+   "legible_s": 4,
+   "key_moment_s": 0,
+   "mean_area_pct": 0.676,
+   "share_visible_pct": 0.1,
+   "share_key_moment_pct": 0.0
+  },
+  "Betano": {
+   "name": "Betano",
+   "country": "Greece",
+   "tier": "Other",
+   "visible_s_all": 14,
+   "visible_s": 3,
+   "appearances": 3,
+   "legible_s": 2,
+   "key_moment_s": 0,
+   "mean_area_pct": 0.401,
+   "share_visible_pct": 0.1,
+   "share_key_moment_pct": 0.0
+  },
+  "BossZhipin": {
+   "name": "BOSS Zhipin",
+   "country": "China",
+   "tier": "Other",
+   "visible_s_all": 2,
+   "visible_s": 2,
+   "appearances": 2,
+   "legible_s": 2,
+   "key_moment_s": 0,
+   "mean_area_pct": 1.009,
+   "share_visible_pct": 0.0,
+   "share_key_moment_pct": 0.0
+  },
+  "CryptoCom": {
+   "name": "Crypto.com",
+   "country": "Singapore",
+   "tier": "Other",
+   "visible_s_all": 2,
+   "visible_s": 2,
+   "appearances": 2,
+   "legible_s": 2,
+   "key_moment_s": 0,
+   "mean_area_pct": 3.135,
+   "share_visible_pct": 0.0,
+   "share_key_moment_pct": 0.0
+  },
+  "FuzeTea": {
+   "name": "Fuze Tea",
+   "country": "USA",
+   "tier": "Other",
+   "visible_s_all": 2,
+   "visible_s": 2,
+   "appearances": 2,
+   "legible_s": 1,
+   "key_moment_s": 0,
+   "mean_area_pct": 0.038,
+   "share_visible_pct": 0.0,
+   "share_key_moment_pct": 0.0
+  },
+  "Dove": {
+   "name": "Dove",
+   "country": "UK",
+   "tier": "Other",
+   "visible_s_all": 2,
+   "visible_s": 1,
+   "appearances": 1,
+   "legible_s": 1,
+   "key_moment_s": 0,
+   "mean_area_pct": 3.618,
+   "share_visible_pct": 0.0,
+   "share_key_moment_pct": 0.0
+  },
+  "Verizon": {
+   "name": "Verizon",
+   "country": "USA",
+   "tier": "Other",
+   "visible_s_all": 1,
+   "visible_s": 1,
+   "appearances": 1,
+   "legible_s": 1,
+   "key_moment_s": 0,
+   "mean_area_pct": 0.404,
+   "share_visible_pct": 0.0,
+   "share_key_moment_pct": 0.0
+  },
+  "Valvoline": {
+   "name": "Valvoline",
+   "country": "USA",
+   "tier": "Other",
+   "visible_s_all": 1,
+   "visible_s": 1,
+   "appearances": 1,
+   "legible_s": 1,
+   "key_moment_s": 0,
+   "mean_area_pct": 0.825,
+   "share_visible_pct": 0.0,
+   "share_key_moment_pct": 0.0
+  },
+  "Nubank": {
+   "name": "Nubank",
+   "country": "Brazil",
+   "tier": "Other",
+   "visible_s_all": 1,
+   "visible_s": 1,
+   "appearances": 1,
+   "legible_s": 1,
+   "key_moment_s": 0,
+   "mean_area_pct": 0.359,
+   "share_visible_pct": 0.0,
+   "share_key_moment_pct": 0.0
+  },
+  "MarriottBonvoy": {
+   "name": "Marriott Bonvoy",
+   "country": "USA",
+   "tier": "Other",
+   "visible_s_all": 1,
+   "visible_s": 1,
+   "appearances": 1,
+   "legible_s": 1,
+   "key_moment_s": 0,
+   "mean_area_pct": 0.112,
+   "share_visible_pct": 0.0,
+   "share_key_moment_pct": 0.0
+  },
+  "InterRapidisimo": {
+   "name": "Inter Rapidísimo",
+   "country": "Colombia",
+   "tier": "Other",
+   "visible_s_all": 1,
+   "visible_s": 1,
+   "appearances": 1,
+   "legible_s": 0,
+   "key_moment_s": 0,
+   "mean_area_pct": 0.047,
+   "share_visible_pct": 0.0,
+   "share_key_moment_pct": 0.0
+  }
+ }
+}

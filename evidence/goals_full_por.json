@@ -1,0 +1,38 @@
+[
+ {
+  "label": "Goal 1-0",
+  "start": 366,
+  "end": 411,
+  "t_first_seen": 381
+ },
+ {
+  "label": "Goal 1-1",
+  "start": 1552,
+  "end": 1597,
+  "t_first_seen": 1567
+ },
+ {
+  "label": "Goal 2-1",
+  "start": 2778,
+  "end": 2823,
+  "t_first_seen": 2793
+ },
+ {
+  "label": "Goal 2-2",
+  "start": 3513,
+  "end": 3558,
+  "t_first_seen": 3528
+ },
+ {
+  "label": "Goal 2-3",
+  "start": 3771,
+  "end": 3816,
+  "t_first_seen": 3786
+ },
+ {
+  "label": "Goal 3-3",
+  "start": 5490,
+  "end": 5535,
+  "t_first_seen": 5505
+ }
+]

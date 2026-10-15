@@ -1,0 +1,16 @@
+# Core pipeline (macOS only: Apple Vision comes through ocrmac / pyobjc)
+ocrmac==1.0.1
+pyobjc-core==12.2.2
+pyobjc-framework-vision==12.2.2
+rapidfuzz==3.14.6
+pillow==12.3.0
+numpy==2.3.5
+opencv-python-headless==5.0.0.93
+imageio-ffmpeg==0.6.0
+requests==2.34.2
+
+# Optional: Google Video Intelligence, Cloud Vision, Gemini engines
+google-auth==2.62.0
+google-cloud-storage==3.17.0
+google-cloud-videointelligence==2.21.0
+google-cloud-vision==3.16.0

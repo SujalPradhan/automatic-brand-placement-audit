@@ -1,0 +1,471 @@
+{
+ "vi": {
+  "micro_recall": 0.42,
+  "micro_precision": 0.859,
+  "tp": 73,
+  "fn": 101,
+  "fp": 12,
+  "per_brand": {
+   "Adidas": {
+    "clear_secs": 0,
+    "tp": 0,
+    "fn": 0,
+    "fp": 1,
+    "recall": null,
+    "precision": 0.0
+   },
+   "Budweiser": {
+    "clear_secs": 12,
+    "tp": 0,
+    "fn": 12,
+    "fp": 0,
+    "recall": 0.0,
+    "precision": null
+   },
+   "Claro": {
+    "clear_secs": 15,
+    "tp": 7,
+    "fn": 8,
+    "fp": 1,
+    "recall": 0.467,
+    "precision": 0.875
+   },
+   "CocaCola": {
+    "clear_secs": 15,
+    "tp": 14,
+    "fn": 1,
+    "fp": 0,
+    "recall": 0.933,
+    "precision": 1.0
+   },
+   "CryptoCom": {
+    "clear_secs": 9,
+    "tp": 0,
+    "fn": 9,
+    "fp": 0,
+    "recall": 0.0,
+    "precision": null
+   },
+   "Hyundai": {
+    "clear_secs": 18,
+    "tp": 17,
+    "fn": 1,
+    "fp": 1,
+    "recall": 0.944,
+    "precision": 0.944
+   },
+   "InterRapidisimo": {
+    "clear_secs": 13,
+    "tp": 0,
+    "fn": 13,
+    "fp": 0,
+    "recall": 0.0,
+    "precision": null
+   },
+   "McDonalds": {
+    "clear_secs": 14,
+    "tp": 10,
+    "fn": 4,
+    "fp": 4,
+    "recall": 0.714,
+    "precision": 0.714
+   },
+   "Nubank": {
+    "clear_secs": 17,
+    "tp": 6,
+    "fn": 11,
+    "fp": 1,
+    "recall": 0.353,
+    "precision": 0.857
+   },
+   "QatarAirways": {
+    "clear_secs": 3,
+    "tp": 2,
+    "fn": 1,
+    "fp": 2,
+    "recall": 0.667,
+    "precision": 0.5
+   },
+   "QatarEnergy": {
+    "clear_secs": 9,
+    "tp": 0,
+    "fn": 9,
+    "fp": 0,
+    "recall": 0.0,
+    "precision": null
+   },
+   "UPL": {
+    "clear_secs": 13,
+    "tp": 0,
+    "fn": 13,
+    "fp": 0,
+    "recall": 0.0,
+    "precision": null
+   },
+   "Visa": {
+    "clear_secs": 0,
+    "tp": 0,
+    "fn": 0,
+    "fp": 1,
+    "recall": null,
+    "precision": 0.0
+   },
+   "Vivo": {
+    "clear_secs": 18,
+    "tp": 15,
+    "fn": 3,
+    "fp": 1,
+    "recall": 0.833,
+    "precision": 0.938
+   },
+   "Wanda": {
+    "clear_secs": 18,
+    "tp": 2,
+    "fn": 16,
+    "fp": 0,
+    "recall": 0.111,
+    "precision": 1.0
+   }
+  }
+ },
+ "vi_unmapped_entities": {
+  "KFC": 9,
+  "Adidas Stan Smith": 8,
+  "TransferWise": 2,
+  "Newcastle Permanent Building Society": 8,
+  "Advanced Micro Devices": 52,
+  "Telefe": 64,
+  "Pepsi": 2,
+  "Detroit Red Wings": 23,
+  "Zotero": 19,
+  "International Design School": 3,
+  "Costa Coffee": 52,
+  "Lacoste": 2,
+  "FIFA": 429,
+  "Hamburger SV": 15,
+  "Procter & Gamble": 3,
+  "Philadelphia Eagles": 7,
+  "Quiznos": 4,
+  "New York Giants": 3,
+  "Ruter": 5,
+  "go90": 8,
+  "NUU mobile": 80,
+  "V8": 6,
+  "Honda": 6,
+  "Titleist": 35,
+  "Pan American Health Organization": 2,
+  "YuppTV": 4,
+  "Castrol": 19,
+  "Nerf": 33,
+  "Nike": 638,
+  "Green Bay Packers": 22,
+  "KQED": 6,
+  "Trenes Especiales Argentinos": 7,
+  "Powerade": 52,
+  "QMobile": 98,
+  "Musixmatch": 697,
+  "Patanjali Ayurved": 4,
+  "NFL": 3,
+  "Jawbone": 10,
+  "Securitas": 19,
+  "Jaguar Cars": 2,
+  "Madshus": 19,
+  "Megaupload": 6,
+  "Glaceau Smartwater": 48,
+  "Hollywoodbets": 19,
+  "New York Jets": 5,
+  "Electronic Arts": 10,
+  "Easistore Self Storage": 97,
+  "Renault": 5,
+  "Dimension Data": 7,
+  "Raybestos": 18,
+  "Jet Airways": 3,
+  "United Airlines": 42,
+  "Cr\u00e9dit Agricole": 198,
+  "Fiddler": 29,
+  "Press TV": 14,
+  "Macquarie Group": 3,
+  "Moneysupermarket.com": 31,
+  "5": 28,
+  "Dewar's": 6,
+  "Atria": 4,
+  "Best Products": 5,
+  "Koh-i-Noor Hardtmuth": 3,
+  "Land Rover": 2,
+  "Head & Shoulders": 42,
+  "AFA": 12,
+  "UK Biobank": 32,
+  "VisitScotland": 26,
+  "Intel": 3,
+  "Oreo": 51,
+  "DailyBurn": 42,
+  "Beobank": 60,
+  "Puma": 2,
+  "Lexus": 12,
+  "Jet2.com": 36,
+  "Bezeq": 3,
+  "Cleveland Cavaliers": 4,
+  "United Press International": 35,
+  "APUS Group": 3,
+  "KOCO-TV": 2,
+  "Fuze Beverage": 29,
+  "Yell": 12,
+  "Google": 5,
+  "Raising Cane's Chicken Fingers": 11,
+  "Ultimate Fighting Championship": 7,
+  "Canongate Books": 21,
+  "New England Patriots": 34,
+  "Just for Men": 19,
+  "John Deere": 6,
+  "Worthy Book": 2,
+  "Bharatiya Janata Party": 5,
+  "Indianapolis Colts": 7,
+  "Siam Cement Group": 7,
+  "Dodge": 24,
+  "Food 4 Less": 2,
+  "Zaxby's": 119,
+  "Chrysler": 2
+ },
+ "ocr": {
+  "micro_recall": 0.649,
+  "micro_precision": 1.0,
+  "tp": 113,
+  "fn": 61,
+  "fp": 0,
+  "per_brand": {
+   "Budweiser": {
+    "clear_secs": 12,
+    "tp": 8,
+    "fn": 4,
+    "fp": 0,
+    "recall": 0.667,
+    "precision": 1.0
+   },
+   "Claro": {
+    "clear_secs": 15,
+    "tp": 6,
+    "fn": 9,
+    "fp": 0,
+    "recall": 0.4,
+    "precision": 1.0
+   },
+   "CocaCola": {
+    "clear_secs": 15,
+    "tp": 4,
+    "fn": 11,
+    "fp": 0,
+    "recall": 0.267,
+    "precision": 1.0
+   },
+   "CryptoCom": {
+    "clear_secs": 9,
+    "tp": 9,
+    "fn": 0,
+    "fp": 0,
+    "recall": 1.0,
+    "precision": 1.0
+   },
+   "Hyundai": {
+    "clear_secs": 18,
+    "tp": 17,
+    "fn": 1,
+    "fp": 0,
+    "recall": 0.944,
+    "precision": 1.0
+   },
+   "InterRapidisimo": {
+    "clear_secs": 13,
+    "tp": 8,
+    "fn": 5,
+    "fp": 0,
+    "recall": 0.615,
+    "precision": 1.0
+   },
+   "McDonalds": {
+    "clear_secs": 14,
+    "tp": 10,
+    "fn": 4,
+    "fp": 0,
+    "recall": 0.714,
+    "precision": 1.0
+   },
+   "Nubank": {
+    "clear_secs": 17,
+    "tp": 9,
+    "fn": 8,
+    "fp": 0,
+    "recall": 0.529,
+    "precision": 1.0
+   },
+   "QatarAirways": {
+    "clear_secs": 3,
+    "tp": 3,
+    "fn": 0,
+    "fp": 0,
+    "recall": 1.0,
+    "precision": 1.0
+   },
+   "QatarEnergy": {
+    "clear_secs": 9,
+    "tp": 6,
+    "fn": 3,
+    "fp": 0,
+    "recall": 0.667,
+    "precision": 1.0
+   },
+   "UPL": {
+    "clear_secs": 13,
+    "tp": 10,
+    "fn": 3,
+    "fp": 0,
+    "recall": 0.769,
+    "precision": 1.0
+   },
+   "Vivo": {
+    "clear_secs": 18,
+    "tp": 12,
+    "fn": 6,
+    "fp": 0,
+    "recall": 0.667,
+    "precision": 1.0
+   },
+   "Wanda": {
+    "clear_secs": 18,
+    "tp": 11,
+    "fn": 7,
+    "fp": 0,
+    "recall": 0.611,
+    "precision": 1.0
+   }
+  }
+ },
+ "fused": {
+  "micro_recall": 0.77,
+  "micro_precision": 0.918,
+  "tp": 134,
+  "fn": 40,
+  "fp": 12,
+  "per_brand": {
+   "Adidas": {
+    "clear_secs": 0,
+    "tp": 0,
+    "fn": 0,
+    "fp": 1,
+    "recall": null,
+    "precision": 0.0
+   },
+   "Budweiser": {
+    "clear_secs": 12,
+    "tp": 8,
+    "fn": 4,
+    "fp": 0,
+    "recall": 0.667,
+    "precision": 1.0
+   },
+   "Claro": {
+    "clear_secs": 15,
+    "tp": 9,
+    "fn": 6,
+    "fp": 1,
+    "recall": 0.6,
+    "precision": 0.9
+   },
+   "CocaCola": {
+    "clear_secs": 15,
+    "tp": 14,
+    "fn": 1,
+    "fp": 0,
+    "recall": 0.933,
+    "precision": 1.0
+   },
+   "CryptoCom": {
+    "clear_secs": 9,
+    "tp": 9,
+    "fn": 0,
+    "fp": 0,
+    "recall": 1.0,
+    "precision": 1.0
+   },
+   "Hyundai": {
+    "clear_secs": 18,
+    "tp": 18,
+    "fn": 0,
+    "fp": 1,
+    "recall": 1.0,
+    "precision": 0.947
+   },
+   "InterRapidisimo": {
+    "clear_secs": 13,
+    "tp": 8,
+    "fn": 5,
+    "fp": 0,
+    "recall": 0.615,
+    "precision": 1.0
+   },
+   "McDonalds": {
+    "clear_secs": 14,
+    "tp": 10,
+    "fn": 4,
+    "fp": 4,
+    "recall": 0.714,
+    "precision": 0.714
+   },
+   "Nubank": {
+    "clear_secs": 17,
+    "tp": 12,
+    "fn": 5,
+    "fp": 1,
+    "recall": 0.706,
+    "precision": 0.923
+   },
+   "QatarAirways": {
+    "clear_secs": 3,
+    "tp": 3,
+    "fn": 0,
+    "fp": 2,
+    "recall": 1.0,
+    "precision": 0.6
+   },
+   "QatarEnergy": {
+    "clear_secs": 9,
+    "tp": 6,
+    "fn": 3,
+    "fp": 0,
+    "recall": 0.667,
+    "precision": 1.0
+   },
+   "UPL": {
+    "clear_secs": 13,
+    "tp": 10,
+    "fn": 3,
+    "fp": 0,
+    "recall": 0.769,
+    "precision": 1.0
+   },
+   "Visa": {
+    "clear_secs": 0,
+    "tp": 0,
+    "fn": 0,
+    "fp": 1,
+    "recall": null,
+    "precision": 0.0
+   },
+   "Vivo": {
+    "clear_secs": 18,
+    "tp": 15,
+    "fn": 3,
+    "fp": 1,
+    "recall": 0.833,
+    "precision": 0.938
+   },
+   "Wanda": {
+    "clear_secs": 18,
+    "tp": 12,
+    "fn": 6,
+    "fp": 0,
+    "recall": 0.667,
+    "precision": 1.0
+   }
+  }
+ }
+}

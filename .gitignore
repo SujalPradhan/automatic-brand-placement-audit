@@ -1,0 +1,28 @@
+# data and environments
+data/
+.venv/
+.env
+__pycache__/
+*.pyc
+.DS_Store
+
+# footage stills and crops (broadcast frames)
+*.jpg
+*.jpeg
+*.png
+*.mp4
+story/img/
+evidence/audit/sheets/
+evidence/engines/sheets/
+evidence/wc_final/
+evidence/wc2026/
+
+# large or regenerable outputs (rerun the pipeline to recreate them)
+evidence/ocr_*.json
+evidence/vi_*.json
+evidence/ee_*.json
+evidence/wc_ocr.json
+evidence/engines/raw_*.json
+evidence/engines/partial_*.json
+evidence/history/v2/ocr_*.json
+evidence/gcp_usage.json

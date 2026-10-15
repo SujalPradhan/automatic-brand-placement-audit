@@ -1,0 +1,35 @@
+brand,start,end,reason
+Adidas,11,12,crop does not show an Adidas mark (France keeper kit is Nike)
+Adidas,202,202,OCR read a Wanda board as Adidas
+Adidas,354,354,goalkeeper kit; no mark visible
+Adidas,694,694,no mark visible
+Aramco,316,316,OCR matched a Coca-Cola board
+Betano,53,53,no Betano board at Lusail
+Budweiser,336,338,red board is Coca-Cola
+Hyundai,499,499,no Hyundai mark visible in crop
+Lays,47,47,OCR fragment of QATAR AIRWAYS
+Lays,366,366,OCR fragment of QATAR AIRWAYS
+Lays,415,415,OCR fragment of QATAR AIRWAYS
+Lays,522,522,OCR fragment of QATAR AIRWAYS
+Lays,574,574,OCR fragment of QATAR AIRWAYS
+McDonalds,296,298,crop shows Nubank board
+McDonalds,335,335,goalkeeper kit; no mark
+Nike,124,124,Argentina sleeve; no swoosh visible
+Nike,147,150,no swoosh visible
+Nike,219,219,no mark visible
+Nike,336,340,red Coca-Cola board
+Nike,456,456,no swoosh visible
+Nike,518,518,Adidas logo on goal net
+Nubank,447,447,OCR read a player name
+Puma,395,395,no mark visible
+UPL,26,26,OCR read 'CUP' in FIFA World Cup graphic
+UPL,443,443,tunnel graphic
+UPL,504,504,OCR read 'CUP'
+UPL,676,676,OCR read 'CUP'
+Visa,715,715,no mark visible
+Wanda,118,118,OCR fragment of HYUNDAI
+Vivo,499,499,crop shows another board
+Betano,628,628,OCR read player name 'UPAMECANO'
+Lays,287,287,OCR fragment of UPL board
+UPL,709,709,OCR read 'CUP'
+Powerade,86,86,v3 lexicon: VI track carried into a Wanda-only shot

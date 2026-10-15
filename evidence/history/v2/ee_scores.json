@@ -1,0 +1,440 @@
+{
+ "benchmark_frames": 150,
+ "calib_frames": 75,
+ "test_frames": 75,
+ "gt_boxes": 2469,
+ "class_agnostic": {
+  "owlv2": {
+   "threshold": 0.1,
+   "sec_per_frame": 0.752,
+   "iou50": {
+    "precision": 0.26371308016877637,
+    "recall": 0.4653760238272524,
+    "tp": 625,
+    "fp": 1745,
+    "fn": 718,
+    "recall_by_size": {
+     "large(>=0.5%)": 0.609,
+     "medium(0.1-0.5%)": 0.583,
+     "small(<0.1%)": 0.236
+    },
+    "gt_by_size": {
+     "large(>=0.5%)": 207,
+     "medium(0.1-0.5%)": 666,
+     "small(<0.1%)": 470
+    }
+   },
+   "iou30": {
+    "precision": 0.33248945147679326,
+    "recall": 0.5867460908413998,
+    "tp": 788,
+    "fp": 1582,
+    "fn": 555,
+    "recall_by_size": {
+     "large(>=0.5%)": 0.715,
+     "medium(0.1-0.5%)": 0.719,
+     "small(<0.1%)": 0.343
+    },
+    "gt_by_size": {
+     "large(>=0.5%)": 207,
+     "medium(0.1-0.5%)": 666,
+     "small(<0.1%)": 470
+    }
+   },
+   "pr_curve_calib": {
+    "0.05": [
+     0.156,
+     0.619
+    ],
+    "0.1": [
+     0.238,
+     0.416
+    ],
+    "0.15": [
+     0.304,
+     0.279
+    ],
+    "0.2": [
+     0.347,
+     0.163
+    ],
+    "0.25": [
+     0.337,
+     0.079
+    ],
+    "0.3": [
+     0.308,
+     0.033
+    ],
+    "0.4": [
+     0.13,
+     0.003
+    ]
+   }
+  },
+  "owlv2_tiled": {
+   "threshold": 0.15,
+   "sec_per_frame": 1.452,
+   "iou50": {
+    "precision": 0.33414634146341465,
+    "recall": 0.3060312732688012,
+    "tp": 411,
+    "fp": 819,
+    "fn": 932,
+    "recall_by_size": {
+     "large(>=0.5%)": 0.415,
+     "medium(0.1-0.5%)": 0.365,
+     "small(<0.1%)": 0.174
+    },
+    "gt_by_size": {
+     "large(>=0.5%)": 207,
+     "medium(0.1-0.5%)": 666,
+     "small(<0.1%)": 470
+    }
+   },
+   "iou30": {
+    "precision": 0.416260162601626,
+    "recall": 0.3812360387192852,
+    "tp": 512,
+    "fp": 718,
+    "fn": 831,
+    "recall_by_size": {
+     "large(>=0.5%)": 0.522,
+     "medium(0.1-0.5%)": 0.449,
+     "small(<0.1%)": 0.223
+    },
+    "gt_by_size": {
+     "large(>=0.5%)": 207,
+     "medium(0.1-0.5%)": 666,
+     "small(<0.1%)": 470
+    }
+   },
+   "pr_curve_calib": {
+    "0.05": [
+     0.163,
+     0.673
+    ],
+    "0.1": [
+     0.261,
+     0.481
+    ],
+    "0.15": [
+     0.347,
+     0.331
+    ],
+    "0.2": [
+     0.364,
+     0.179
+    ],
+    "0.25": [
+     0.339,
+     0.084
+    ],
+    "0.3": [
+     0.343,
+     0.042
+    ],
+    "0.4": [
+     0.129,
+     0.004
+    ]
+   }
+  },
+  "cloud_vision": {
+   "threshold": 0.0,
+   "sec_per_frame": 0.253,
+   "iou50": {
+    "precision": 0.5333333333333333,
+    "recall": 0.005956813104988831,
+    "tp": 8,
+    "fp": 7,
+    "fn": 1335,
+    "recall_by_size": {
+     "large(>=0.5%)": 0.024,
+     "medium(0.1-0.5%)": 0.005,
+     "small(<0.1%)": 0.0
+    },
+    "gt_by_size": {
+     "large(>=0.5%)": 207,
+     "medium(0.1-0.5%)": 666,
+     "small(<0.1%)": 470
+    }
+   },
+   "iou30": {
+    "precision": 0.5333333333333333,
+    "recall": 0.005956813104988831,
+    "tp": 8,
+    "fp": 7,
+    "fn": 1335,
+    "recall_by_size": {
+     "large(>=0.5%)": 0.024,
+     "medium(0.1-0.5%)": 0.005,
+     "small(<0.1%)": 0.0
+    },
+    "gt_by_size": {
+     "large(>=0.5%)": 207,
+     "medium(0.1-0.5%)": 666,
+     "small(<0.1%)": 470
+    }
+   }
+  }
+ },
+ "cloud_vision_descriptions": {
+  "FC Dinamo Bucure\u0219ti": 11,
+  "V\u00e4ster\u00e5s SK Fotboll": 3,
+  "Hydroscand": 3,
+  "IF Brommapojkarna": 3,
+  "IFK Norrk\u00f6ping": 2,
+  "Select Sport": 2,
+  "Truecaller": 2,
+  "Nike": 2,
+  "Hammarby Fotboll": 2,
+  "Max Hamburgers": 2,
+  "Colo-Colo": 2,
+  "BK H\u00e4cken": 1,
+  "IK Sirius Fotboll": 1,
+  "Stadium Super Trucks": 1,
+  "Storvreta IBK": 1,
+  "Kyiv Futsal Federation": 1,
+  "IF Elfsborg": 1,
+  "Tour de Ski": 1
+ },
+ "brand_identification": {
+  "owlv2": {
+   "Unibet": {
+    "threshold": 0.875,
+    "frame_precision": 0.653,
+    "frame_recall": 1.0,
+    "frame_f1": 0.79,
+    "frames_with_brand": 49,
+    "frame_fp": 26,
+    "box_precision": 0.0,
+    "box_recall": 0.0,
+    "boxes_gt": 128
+   },
+   "Puma": {
+    "threshold": 0.8,
+    "frame_precision": 0.173,
+    "frame_recall": 1.0,
+    "frame_f1": 0.295,
+    "frames_with_brand": 13,
+    "frame_fp": 62,
+    "box_precision": 0.001,
+    "box_recall": 0.036,
+    "boxes_gt": 28
+   },
+   "Intersport": {
+    "threshold": 0.95,
+    "frame_precision": 0.0,
+    "frame_recall": 0.0,
+    "frame_f1": 0.0,
+    "frames_with_brand": 3,
+    "frame_fp": 0,
+    "box_precision": 0.0,
+    "box_recall": 0.0,
+    "boxes_gt": 4
+   },
+   "Volkswagen": {
+    "threshold": 0.925,
+    "frame_precision": 0.211,
+    "frame_recall": 0.444,
+    "frame_f1": 0.286,
+    "frames_with_brand": 9,
+    "frame_fp": 15,
+    "box_precision": 0.0,
+    "box_recall": 0.0,
+    "boxes_gt": 12
+   },
+   "Elkedjan": {
+    "threshold": 0.95,
+    "frame_precision": 0.147,
+    "frame_recall": 0.455,
+    "frame_f1": 0.222,
+    "frames_with_brand": 11,
+    "frame_fp": 29,
+    "box_precision": 0.0,
+    "box_recall": 0.0,
+    "boxes_gt": 11
+   },
+   "Nordic Wellness": {
+    "threshold": 0.9,
+    "frame_precision": 0.159,
+    "frame_recall": 0.778,
+    "frame_f1": 0.264,
+    "frames_with_brand": 9,
+    "frame_fp": 37,
+    "box_precision": 0.0,
+    "box_recall": 0.0,
+    "boxes_gt": 13
+   }
+  },
+  "owlv2_tiled": {
+   "Unibet": {
+    "threshold": 0.875,
+    "frame_precision": 0.644,
+    "frame_recall": 0.959,
+    "frame_f1": 0.77,
+    "frames_with_brand": 49,
+    "frame_fp": 26,
+    "box_precision": 0.01,
+    "box_recall": 0.047,
+    "boxes_gt": 128
+   },
+   "Puma": {
+    "threshold": 0.825,
+    "frame_precision": 0.173,
+    "frame_recall": 1.0,
+    "frame_f1": 0.295,
+    "frames_with_brand": 13,
+    "frame_fp": 62,
+    "box_precision": 0.002,
+    "box_recall": 0.107,
+    "boxes_gt": 28
+   },
+   "Intersport": {
+    "threshold": 0.95,
+    "frame_precision": 0.031,
+    "frame_recall": 0.333,
+    "frame_f1": 0.057,
+    "frames_with_brand": 3,
+    "frame_fp": 31,
+    "box_precision": 0.0,
+    "box_recall": 0.0,
+    "boxes_gt": 4
+   },
+   "Volkswagen": {
+    "threshold": 0.925,
+    "frame_precision": 0.429,
+    "frame_recall": 0.333,
+    "frame_f1": 0.375,
+    "frames_with_brand": 9,
+    "frame_fp": 4,
+    "box_precision": 0.182,
+    "box_recall": 0.167,
+    "boxes_gt": 12
+   },
+   "Elkedjan": {
+    "threshold": 0.875,
+    "frame_precision": 0.17,
+    "frame_recall": 0.818,
+    "frame_f1": 0.281,
+    "frames_with_brand": 11,
+    "frame_fp": 44,
+    "box_precision": 0.016,
+    "box_recall": 0.455,
+    "boxes_gt": 11
+   },
+   "Nordic Wellness": {
+    "threshold": 0.925,
+    "frame_precision": 0.158,
+    "frame_recall": 0.333,
+    "frame_f1": 0.214,
+    "frames_with_brand": 9,
+    "frame_fp": 16,
+    "box_precision": 0.0,
+    "box_recall": 0.0,
+    "boxes_gt": 13
+   }
+  },
+  "cloud_vision": {
+   "Unibet": {
+    "frame_precision": 0.0,
+    "frame_recall": 0.0,
+    "frame_f1": 0.0,
+    "frames_with_brand": 49,
+    "frame_fp": 0,
+    "box_precision": 0.0,
+    "box_recall": 0.0,
+    "boxes_gt": 128
+   },
+   "Puma": {
+    "frame_precision": 0.0,
+    "frame_recall": 0.0,
+    "frame_f1": 0.0,
+    "frames_with_brand": 13,
+    "frame_fp": 0,
+    "box_precision": 0.0,
+    "box_recall": 0.0,
+    "boxes_gt": 28
+   },
+   "Intersport": {
+    "frame_precision": 0.0,
+    "frame_recall": 0.0,
+    "frame_f1": 0.0,
+    "frames_with_brand": 3,
+    "frame_fp": 0,
+    "box_precision": 0.0,
+    "box_recall": 0.0,
+    "boxes_gt": 4
+   },
+   "Volkswagen": {
+    "frame_precision": 0.0,
+    "frame_recall": 0.0,
+    "frame_f1": 0.0,
+    "frames_with_brand": 9,
+    "frame_fp": 0,
+    "box_precision": 0.0,
+    "box_recall": 0.0,
+    "boxes_gt": 12
+   },
+   "Elkedjan": {
+    "frame_precision": 0.0,
+    "frame_recall": 0.0,
+    "frame_f1": 0.0,
+    "frames_with_brand": 11,
+    "frame_fp": 0,
+    "box_precision": 0.0,
+    "box_recall": 0.0,
+    "boxes_gt": 11
+   },
+   "Nordic Wellness": {
+    "frame_precision": 0.0,
+    "frame_recall": 0.0,
+    "frame_f1": 0.0,
+    "frames_with_brand": 9,
+    "frame_fp": 0,
+    "box_precision": 0.0,
+    "box_recall": 0.0,
+    "boxes_gt": 13
+   }
+  },
+  "ocr_apple_vision": {
+   "Unibet": {
+    "frame_precision": 1.0,
+    "frame_recall": 0.633,
+    "frame_f1": 0.775,
+    "frames_with_brand": 49
+   },
+   "Puma": {
+    "frame_precision": 1.0,
+    "frame_recall": 0.077,
+    "frame_f1": 0.143,
+    "frames_with_brand": 13
+   },
+   "Intersport": {
+    "frame_precision": 0.0,
+    "frame_recall": 0.0,
+    "frame_f1": 0.0,
+    "frames_with_brand": 3
+   },
+   "Volkswagen": {
+    "frame_precision": 0.0,
+    "frame_recall": 0.0,
+    "frame_f1": 0.0,
+    "frames_with_brand": 9
+   },
+   "Elkedjan": {
+    "frame_precision": 1.0,
+    "frame_recall": 0.545,
+    "frame_f1": 0.706,
+    "frames_with_brand": 11
+   },
+   "Nordic Wellness": {
+    "frame_precision": 1.0,
+    "frame_recall": 0.111,
+    "frame_f1": 0.2,
+    "frames_with_brand": 9
+   }
+  }
+ }
+}

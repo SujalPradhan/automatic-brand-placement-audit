@@ -1,0 +1,24 @@
+{
+ "note": "Kit/jersey and on-screen-graphic marks. Not part of the board exposure analysis.",
+ "detected_seconds": {},
+ "hand_labels": [
+  [
+   15,
+   "Adidas",
+   "S",
+   "kit"
+  ],
+  [
+   45,
+   "Adidas",
+   "S",
+   "kit"
+  ],
+  [
+   80,
+   "Adidas",
+   "S",
+   "kit"
+  ]
+ ]
+}

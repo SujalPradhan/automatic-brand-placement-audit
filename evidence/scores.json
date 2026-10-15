@@ -1,0 +1,834 @@
+{
+ "wc_final": {
+  "frames_labelled": 72,
+  "board_marks_labelled": 76,
+  "ocr": {
+   "board_S": {
+    "found": 2,
+    "of": 14,
+    "recall": 0.143,
+    "ci95": [
+     0.04,
+     0.399
+    ]
+   },
+   "board_L": {
+    "found": 47,
+    "of": 62,
+    "recall": 0.758,
+    "ci95": [
+     0.638,
+     0.848
+    ]
+   },
+   "board_all": {
+    "found": 49,
+    "of": 76,
+    "recall": 0.645,
+    "ci95": [
+     0.533,
+     0.743
+    ]
+   },
+   "precision": {
+    "verified": 521,
+    "detected": 539,
+    "precision": 0.967,
+    "ci95": [
+     0.948,
+     0.979
+    ]
+   }
+  },
+  "vi": {
+   "board_S": {
+    "found": 4,
+    "of": 14,
+    "recall": 0.286,
+    "ci95": [
+     0.117,
+     0.546
+    ]
+   },
+   "board_L": {
+    "found": 31,
+    "of": 62,
+    "recall": 0.5,
+    "ci95": [
+     0.379,
+     0.621
+    ]
+   },
+   "board_all": {
+    "found": 35,
+    "of": 76,
+    "recall": 0.461,
+    "ci95": [
+     0.353,
+     0.572
+    ]
+   },
+   "precision": {
+    "verified": 415,
+    "detected": 429,
+    "precision": 0.967,
+    "ci95": [
+     0.946,
+     0.98
+    ]
+   }
+  },
+  "fused": {
+   "board_S": {
+    "found": 6,
+    "of": 14,
+    "recall": 0.429,
+    "ci95": [
+     0.214,
+     0.674
+    ]
+   },
+   "board_L": {
+    "found": 51,
+    "of": 62,
+    "recall": 0.823,
+    "ci95": [
+     0.71,
+     0.898
+    ]
+   },
+   "board_all": {
+    "found": 57,
+    "of": 76,
+    "recall": 0.75,
+    "ci95": [
+     0.642,
+     0.834
+    ]
+   },
+   "precision": {
+    "verified": 638,
+    "detected": 670,
+    "precision": 0.952,
+    "ci95": [
+     0.933,
+     0.966
+    ]
+   }
+  },
+  "per_brand_board_recall_fused": {
+   "QatarAirways": {
+    "found": 8,
+    "of": 11,
+    "ci95": [
+     0.434,
+     0.903
+    ]
+   },
+   "Wanda": {
+    "found": 6,
+    "of": 8,
+    "ci95": [
+     0.409,
+     0.929
+    ]
+   },
+   "Budweiser": {
+    "found": 7,
+    "of": 8,
+    "ci95": [
+     0.529,
+     0.978
+    ]
+   },
+   "CryptoCom": {
+    "found": 5,
+    "of": 7,
+    "ci95": [
+     0.359,
+     0.918
+    ]
+   },
+   "CocaCola": {
+    "found": 4,
+    "of": 6,
+    "ci95": [
+     0.3,
+     0.903
+    ]
+   },
+   "Vivo": {
+    "found": 4,
+    "of": 5,
+    "ci95": [
+     0.376,
+     0.964
+    ]
+   },
+   "Adidas": {
+    "found": 2,
+    "of": 5,
+    "ci95": [
+     0.118,
+     0.769
+    ]
+   },
+   "Hyundai": {
+    "found": 5,
+    "of": 5,
+    "ci95": [
+     0.566,
+     1
+    ]
+   },
+   "Mengniu": {
+    "found": 2,
+    "of": 4,
+    "ci95": [
+     0.15,
+     0.85
+    ]
+   },
+   "McDonalds": {
+    "found": 3,
+    "of": 3,
+    "ci95": [
+     0.438,
+     1
+    ]
+   },
+   "QatarEnergy": {
+    "found": 2,
+    "of": 3,
+    "ci95": [
+     0.208,
+     0.939
+    ]
+   },
+   "Visa": {
+    "found": 2,
+    "of": 3,
+    "ci95": [
+     0.208,
+     0.939
+    ]
+   },
+   "Hisense": {
+    "found": 2,
+    "of": 2,
+    "ci95": [
+     0.342,
+     1
+    ]
+   },
+   "Powerade": {
+    "found": 1,
+    "of": 1,
+    "ci95": [
+     0.207,
+     1
+    ]
+   },
+   "Nubank": {
+    "found": 1,
+    "of": 1,
+    "ci95": [
+     0.207,
+     1
+    ]
+   },
+   "Claro": {
+    "found": 1,
+    "of": 1,
+    "ci95": [
+     0.207,
+     1
+    ]
+   },
+   "UPL": {
+    "found": 1,
+    "of": 1,
+    "ci95": [
+     0.207,
+     1
+    ]
+   },
+   "InterRapidisimo": {
+    "found": 0,
+    "of": 1,
+    "ci95": [
+     0,
+     0.793
+    ]
+   },
+   "BYJUS": {
+    "found": 1,
+    "of": 1,
+    "ci95": [
+     0.207,
+     1
+    ]
+   }
+  }
+ },
+ "wc2026": {
+  "frames_labelled": 60,
+  "board_marks_labelled": 66,
+  "ocr": {
+   "board_S": {
+    "found": 11,
+    "of": 24,
+    "recall": 0.458,
+    "ci95": [
+     0.279,
+     0.649
+    ]
+   },
+   "board_L": {
+    "found": 38,
+    "of": 42,
+    "recall": 0.905,
+    "ci95": [
+     0.779,
+     0.962
+    ]
+   },
+   "board_all": {
+    "found": 49,
+    "of": 66,
+    "recall": 0.742,
+    "ci95": [
+     0.626,
+     0.833
+    ]
+   },
+   "precision": {
+    "verified": 403,
+    "detected": 463,
+    "precision": 0.87,
+    "ci95": [
+     0.837,
+     0.898
+    ]
+   }
+  },
+  "vi": {
+   "board_S": {
+    "found": 8,
+    "of": 24,
+    "recall": 0.333,
+    "ci95": [
+     0.18,
+     0.533
+    ]
+   },
+   "board_L": {
+    "found": 20,
+    "of": 42,
+    "recall": 0.476,
+    "ci95": [
+     0.334,
+     0.623
+    ]
+   },
+   "board_all": {
+    "found": 28,
+    "of": 66,
+    "recall": 0.424,
+    "ci95": [
+     0.312,
+     0.544
+    ]
+   },
+   "precision": {
+    "verified": 286,
+    "detected": 290,
+    "precision": 0.986,
+    "ci95": [
+     0.965,
+     0.995
+    ]
+   }
+  },
+  "fused": {
+   "board_S": {
+    "found": 14,
+    "of": 24,
+    "recall": 0.583,
+    "ci95": [
+     0.388,
+     0.755
+    ]
+   },
+   "board_L": {
+    "found": 40,
+    "of": 42,
+    "recall": 0.952,
+    "ci95": [
+     0.842,
+     0.987
+    ]
+   },
+   "board_all": {
+    "found": 54,
+    "of": 66,
+    "recall": 0.818,
+    "ci95": [
+     0.709,
+     0.893
+    ]
+   },
+   "precision": {
+    "verified": 491,
+    "detected": 555,
+    "precision": 0.885,
+    "ci95": [
+     0.855,
+     0.909
+    ]
+   }
+  },
+  "per_brand_board_recall_fused": {
+   "Visa": {
+    "found": 9,
+    "of": 10,
+    "ci95": [
+     0.596,
+     0.982
+    ]
+   },
+   "Hyundai": {
+    "found": 4,
+    "of": 6,
+    "ci95": [
+     0.3,
+     0.903
+    ]
+   },
+   "Aramco": {
+    "found": 5,
+    "of": 5,
+    "ci95": [
+     0.566,
+     1
+    ]
+   },
+   "CocaCola": {
+    "found": 2,
+    "of": 4,
+    "ci95": [
+     0.15,
+     0.85
+    ]
+   },
+   "Adidas": {
+    "found": 2,
+    "of": 4,
+    "ci95": [
+     0.15,
+     0.85
+    ]
+   },
+   "Kraken": {
+    "found": 4,
+    "of": 4,
+    "ci95": [
+     0.51,
+     1
+    ]
+   },
+   "QatarAirways": {
+    "found": 2,
+    "of": 3,
+    "ci95": [
+     0.208,
+     0.939
+    ]
+   },
+   "ADIPredictstreet": {
+    "found": 3,
+    "of": 3,
+    "ci95": [
+     0.438,
+     1
+    ]
+   },
+   "InterRapidisimo": {
+    "found": 3,
+    "of": 3,
+    "ci95": [
+     0.438,
+     1
+    ]
+   },
+   "Betano": {
+    "found": 3,
+    "of": 3,
+    "ci95": [
+     0.438,
+     1
+    ]
+   },
+   "Mengniu": {
+    "found": 2,
+    "of": 3,
+    "ci95": [
+     0.208,
+     0.939
+    ]
+   },
+   "Lenovo": {
+    "found": 3,
+    "of": 3,
+    "ci95": [
+     0.438,
+     1
+    ]
+   },
+   "McDonalds": {
+    "found": 2,
+    "of": 3,
+    "ci95": [
+     0.208,
+     0.939
+    ]
+   },
+   "BankOfAmerica": {
+    "found": 1,
+    "of": 2,
+    "ci95": [
+     0.095,
+     0.905
+    ]
+   },
+   "Hisense": {
+    "found": 1,
+    "of": 2,
+    "ci95": [
+     0.095,
+     0.905
+    ]
+   },
+   "MarriottBonvoy": {
+    "found": 1,
+    "of": 1,
+    "ci95": [
+     0.207,
+     1
+    ]
+   },
+   "Valvoline": {
+    "found": 1,
+    "of": 1,
+    "ci95": [
+     0.207,
+     1
+    ]
+   },
+   "Globant": {
+    "found": 1,
+    "of": 1,
+    "ci95": [
+     0.207,
+     1
+    ]
+   },
+   "SavvyGames": {
+    "found": 1,
+    "of": 1,
+    "ci95": [
+     0.207,
+     1
+    ]
+   },
+   "Dove": {
+    "found": 1,
+    "of": 1,
+    "ci95": [
+     0.207,
+     1
+    ]
+   },
+   "Lays": {
+    "found": 1,
+    "of": 1,
+    "ci95": [
+     0.207,
+     1
+    ]
+   },
+   "Verizon": {
+    "found": 1,
+    "of": 1,
+    "ci95": [
+     0.207,
+     1
+    ]
+   },
+   "MichelobUltra": {
+    "found": 1,
+    "of": 1,
+    "ci95": [
+     0.207,
+     1
+    ]
+   }
+  }
+ },
+ "wc2026_final": {
+  "frames_labelled": 24,
+  "board_marks_labelled": 34,
+  "ocr": {
+   "board_L": {
+    "found": 24,
+    "of": 26,
+    "recall": 0.923,
+    "ci95": [
+     0.759,
+     0.979
+    ]
+   },
+   "board_S": {
+    "found": 0,
+    "of": 8,
+    "recall": 0.0,
+    "ci95": [
+     0,
+     0.324
+    ]
+   },
+   "board_all": {
+    "found": 24,
+    "of": 34,
+    "recall": 0.706,
+    "ci95": [
+     0.538,
+     0.832
+    ]
+   },
+   "precision": {
+    "verified": 108,
+    "detected": 110,
+    "precision": 0.982,
+    "ci95": [
+     0.936,
+     0.995
+    ]
+   }
+  },
+  "vi": {
+   "board_L": {
+    "found": 15,
+    "of": 26,
+    "recall": 0.577,
+    "ci95": [
+     0.389,
+     0.745
+    ]
+   },
+   "board_S": {
+    "found": 1,
+    "of": 8,
+    "recall": 0.125,
+    "ci95": [
+     0.022,
+     0.471
+    ]
+   },
+   "board_all": {
+    "found": 16,
+    "of": 34,
+    "recall": 0.471,
+    "ci95": [
+     0.315,
+     0.633
+    ]
+   },
+   "precision": {
+    "verified": 77,
+    "detected": 94,
+    "precision": 0.819,
+    "ci95": [
+     0.729,
+     0.884
+    ]
+   }
+  },
+  "fused": {
+   "board_L": {
+    "found": 24,
+    "of": 26,
+    "recall": 0.923,
+    "ci95": [
+     0.759,
+     0.979
+    ]
+   },
+   "board_S": {
+    "found": 1,
+    "of": 8,
+    "recall": 0.125,
+    "ci95": [
+     0.022,
+     0.471
+    ]
+   },
+   "board_all": {
+    "found": 25,
+    "of": 34,
+    "recall": 0.735,
+    "ci95": [
+     0.569,
+     0.854
+    ]
+   },
+   "precision": {
+    "verified": 117,
+    "detected": 136,
+    "precision": 0.86,
+    "ci95": [
+     0.792,
+     0.909
+    ]
+   }
+  },
+  "per_brand_board_recall_fused": {
+   "Aramco": {
+    "found": 4,
+    "of": 5,
+    "ci95": [
+     0.376,
+     0.964
+    ]
+   },
+   "Lenovo": {
+    "found": 4,
+    "of": 4,
+    "ci95": [
+     0.51,
+     1
+    ]
+   },
+   "Visa": {
+    "found": 3,
+    "of": 4,
+    "ci95": [
+     0.301,
+     0.954
+    ]
+   },
+   "Hyundai": {
+    "found": 2,
+    "of": 3,
+    "ci95": [
+     0.208,
+     0.939
+    ]
+   },
+   "ADIPredictstreet": {
+    "found": 2,
+    "of": 3,
+    "ci95": [
+     0.208,
+     0.939
+    ]
+   },
+   "Hisense": {
+    "found": 2,
+    "of": 2,
+    "ci95": [
+     0.342,
+     1
+    ]
+   },
+   "QatarAirways": {
+    "found": 1,
+    "of": 2,
+    "ci95": [
+     0.095,
+     0.905
+    ]
+   },
+   "Powerade": {
+    "found": 2,
+    "of": 2,
+    "ci95": [
+     0.342,
+     1
+    ]
+   },
+   "MichelobUltra": {
+    "found": 1,
+    "of": 1,
+    "ci95": [
+     0.207,
+     1
+    ]
+   },
+   "Betano": {
+    "found": 1,
+    "of": 1,
+    "ci95": [
+     0.207,
+     1
+    ]
+   },
+   "DoorDash": {
+    "found": 0,
+    "of": 1,
+    "ci95": [
+     0,
+     0.793
+    ]
+   },
+   "Globant": {
+    "found": 0,
+    "of": 1,
+    "ci95": [
+     0,
+     0.793
+    ]
+   },
+   "InterRapidisimo": {
+    "found": 0,
+    "of": 1,
+    "ci95": [
+     0,
+     0.793
+    ]
+   },
+   "MercadoLibre": {
+    "found": 1,
+    "of": 1,
+    "ci95": [
+     0.207,
+     1
+    ]
+   },
+   "Fanatics": {
+    "found": 1,
+    "of": 1,
+    "ci95": [
+     0.207,
+     1
+    ]
+   },
+   "CocaCola": {
+    "found": 1,
+    "of": 1,
+    "ci95": [
+     0.207,
+     1
+    ]
+   },
+   "Adidas": {
+    "found": 0,
+    "of": 1,
+    "ci95": [
+     0,
+     0.793
+    ]
+   }
+  }
+ }
+}

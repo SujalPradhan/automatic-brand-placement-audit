@@ -1,0 +1,6 @@
+start_s,end_s,kind
+0,160,pregame
+160,3180,live_play
+3180,3235,halftime_studio
+3235,6200,live_play
+6200,6246,postgame

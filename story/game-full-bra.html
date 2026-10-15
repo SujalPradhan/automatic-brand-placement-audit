@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Brazil v Korea 2022</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<link rel="stylesheet" href="style.css">
+<style>html, body { margin: 0; } img { max-width: 100%; } [hidden] { display: none !important; } :root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }</style>
+</head>
+<body>
+<main class="wrap" data-page="full_bra">
+
+  <nav class="top" aria-label="Pages">
+    <a href="index.html">Overview &amp; accuracy</a>
+    <a href="game-2022.html">2022 final</a>
+    <a href="game-2026.html">2026: Brazil v Morocco</a>
+    <a href="game-2026-final.html">2026 final</a>
+    <a href="game-full-bra.html" aria-current="page">2022: Brazil v Korea</a>
+    <a href="game-full-por.html">2018: Portugal v Spain</a>
+    <a href="cost.html">Cost at scale</a>
+  </nav>
+
+  <header class="hero">
+    <p class="eyebrow">2022 round of 16 · Brazil 4–1 South Korea · full match, 1:44</p>
+    <h1>Every Brazil goal had a different sponsor behind it</h1>
+    <p class="dek">In Brazil's 4–1 win, no brand owned the goals. Each of the five went to a different set of boards: QatarEnergy, Ooredoo and QNB, Budweiser and Hisense, Visa, and Hyundai. The two Qatari brands, Ooredoo and QNB, were 1.3% of all sponsor screen time but 21% of goal-moment seconds, nearly all from one stoppage before the second goal.</p>
+  </header>
+
+  <section aria-labelledby="b1">
+    <div class="col">
+      <h2 id="b1">Goal by goal</h2>
+      <p>Which brand ended up in the shot depended on where the camera was pointing when the ball went in.</p>
+      <ul class="plain">
+        <li><strong>Second goal:</strong> the camera held on the goal-line boards for about 20 seconds before the goal. Ooredoo and QNB, brands from Qatar that are not in FIFA's sponsor tiers, filled the shot. We checked these frames by eye.</li>
+        <li><strong>Last goal, Korea's:</strong> 23 of 24 brand-seconds were Hyundai. Hyundai is a South Korean company, and its boards were in view for almost the whole window.</li>
+        <li><strong>Qatar Airways:</strong> 487 seconds on screen, the 4th most of any brand, and 2 seconds during goals.</li>
+      </ul>
+    </div>
+    <div class="table-wrap"><table><thead><tr><th>Goal</th><th>At</th><th>Brand-seconds in the window</th><th>Who had them</th></tr></thead><tbody><tr><td>1-0</td><td class="n">9:25</td><td class="n">38</td><td>QatarEnergy 14, Visa 7, Wanda 4</td></tr><tr><td>2-0</td><td class="n">15:02</td><td class="n">44</td><td>Ooredoo 18, QNB 15, McDonald's 11</td></tr><tr><td>3-0</td><td class="n">30:59</td><td class="n">28</td><td>Budweiser 15, Hisense 12, Alrosa 1</td></tr><tr><td>4-0</td><td class="n">38:30</td><td class="n">24</td><td>Visa 20, Crypto.com 1, Wanda 1</td></tr><tr><td>4-1</td><td class="n">85:22</td><td class="n">24</td><td>Hyundai 23, Vivo 1</td></tr></tbody></table></div>
+    <figure>
+      <div class="legend"><span><i style="background:var(--s1)"></i>Share of all sponsor screen time</span><span><i style="background:var(--s2)"></i>Share of goal-moment seconds</span></div>
+      <div class="chart" id="dumbbell"></div>
+      <figcaption>Brands with at least 8 seconds of live play on screen. Each goal window runs from 15 s before the on-screen score changes to 30 s after, which covers the build-up, goal, celebration and replays. 225 seconds of the match are in a goal window.</figcaption>
+    </figure>
+  </section>
+
+  <section aria-labelledby="b2">
+    <div class="col">
+      <h2 id="b2">Every sponsor, second by second</h2>
+      <p>5,985 seconds of live play, with at least one sponsor board visible in 4,065 of them. 39 brands were detected.</p>
+    </div>
+    <figure>
+      <div class="legend"><span><i style="background:var(--t1)"></i>FIFA Partner</span><span><i style="background:var(--t2)"></i>World Cup Sponsor</span><span><i style="background:var(--t3)"></i>Regional supporter</span><span><i style="background:var(--s1)"></i>Not in our sponsor list</span><span><i style="background:var(--moment);border:1px solid var(--rule)"></i>Goal window</span></div>
+      <div class="chart" id="timeline"></div>
+      <figcaption>One tick per second in which the brand was detected during live play. Brands seen for fewer than 3 seconds are left out of the chart.</figcaption>
+    </figure>
+    <div class="table-wrap" id="brands"></div>
+  </section>
+
+  <section aria-labelledby="b3">
+    <div class="col">
+      <h2 id="b3">How well did the tools see this match?</h2>
+      <p>We hand-labelled 30 frames of live play (26 boards) and checked a random 150 detections by eye. Both methods ran on the whole match. Apple Vision took about 22 minutes per hour of video on four workers; Video Intelligence took about 95 minutes of Google processing for the 104-minute match.</p>
+    </div>
+    <div class="legend"><span><i class="sq" style="background:var(--q-good)"></i>Good: ≥ 0.80 (precision ≥ 0.95)</span><span><i class="sq" style="background:var(--q-fair)"></i>Fair: 0.50–0.79 (0.85–0.94)</span><span><i class="sq" style="background:var(--q-weak)"></i>Weak: below that</span></div>
+    <div class="table-wrap"><table><thead><tr><th>Method</th><th>Boards found</th><th>Large</th><th>Small</th><th>Detections that were real</th></tr></thead><tbody><tr><td>Apple Vision (on-device text reading)</td><td class="n q-fair">20 of 26 (0.77)</td><td class="n q-good">18 of 22 (0.82)</td><td class="n q-fair">2 of 4 (0.50)</td><td class="n q-fair">120 of 130 (0.92)</td></tr><tr><td>Google Video Intelligence (logos)</td><td class="n q-fair">16 of 26 (0.62)</td><td class="n q-fair">15 of 22 (0.68)</td><td class="n q-weak">1 of 4 (0.25)</td><td class="n q-fair">72 of 84 (0.86)</td></tr><tr><td>Both combined</td><td class="n q-good">22 of 26 (0.85)</td><td class="n q-good">19 of 22 (0.86)</td><td class="n q-fair">3 of 4 (0.75)</td><td class="n q-fair">131 of 150 (0.87)</td></tr></tbody></table></div>
+  </section>
+
+  <p class="caveat col">One match, five goals, and a goal-moment share built from 158 brand-seconds. The 26-board recall sample gives wide ranges (Apple Vision 0.77, 95% range 0.58 to 0.89). The 150-detection precision sample was checked before a few brand terms were added to the list, so some brands may be slightly off. Brands in grey are ones we did not place in a sponsor tier, which includes real host-country boards such as Ooredoo and QNB and some that may be misreads; none of the claims above rest on a misread. Replays sit inside live play and are counted.</p>
+
+  <footer><p>Perimeter boards only; kit logos are excluded. Data: <code>story/game-full_bra.json</code>. Back to the <a href="index.html">overview and accuracy</a> or the <a href="cost.html">cost at scale</a>.</p></footer>
+</main>
+<script src="script.js"></script>
+</body>
+</html>

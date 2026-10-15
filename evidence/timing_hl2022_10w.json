@@ -1,0 +1,58 @@
+{
+ "video": "The Greatest World Cup FINAL Ever _1080p50.mp4",
+ "seconds": 3600,
+ "workers": 10,
+ "started": "2026-10-15 11:03:06",
+ "extract_s": 18.9,
+ "frames": 716,
+ "ocr_s": 156.9,
+ "aggregate_s": 0.0,
+ "brands_found": 29,
+ "seconds_with_any_brand": 352,
+ "top_brands": [
+  [
+   "QatarAirways",
+   74
+  ],
+  [
+   "Wanda",
+   63
+  ],
+  [
+   "Budweiser",
+   53
+  ],
+  [
+   "Hyundai",
+   52
+  ],
+  [
+   "CryptoCom",
+   46
+  ],
+  [
+   "Vivo",
+   38
+  ],
+  [
+   "McDonalds",
+   34
+  ],
+  [
+   "Visa",
+   27
+  ]
+ ],
+ "total_s": 175.9,
+ "mean_latency_s": 2.15,
+ "frames_per_s_by_600_frame_block": [
+  4.46,
+  5.2
+ ],
+ "video_seconds": 716,
+ "cost_usd_host_prorata": 0.06,
+ "total_s_per_video_hour": 884.4,
+ "cost_usd_per_video_hour": 0.302,
+ "cost_usd_extract": 0.006,
+ "cost_usd_ocr": 0.054
+}

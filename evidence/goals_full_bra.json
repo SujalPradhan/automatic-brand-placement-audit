@@ -1,0 +1,32 @@
+[
+ {
+  "label": "Goal 1-0",
+  "start": 550,
+  "end": 595,
+  "t_first_seen": 565
+ },
+ {
+  "label": "Goal 2-0",
+  "start": 887,
+  "end": 932,
+  "t_first_seen": 902
+ },
+ {
+  "label": "Goal 3-0",
+  "start": 1844,
+  "end": 1889,
+  "t_first_seen": 1859
+ },
+ {
+  "label": "Goal 4-0",
+  "start": 2295,
+  "end": 2340,
+  "t_first_seen": 2310
+ },
+ {
+  "label": "Goal 4-1",
+  "start": 5107,
+  "end": 5152,
+  "t_first_seen": 5122
+ }
+]
