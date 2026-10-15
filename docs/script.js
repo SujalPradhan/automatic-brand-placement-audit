@@ -85,11 +85,16 @@ function dumbbell(root, brands, minSeconds = 8) {
   });
 }
 
-/* YouTube player for the "second by second" section. Clicking the timeline seeks it; if YouTube refuses to play the
-   video here (FIFA blocks embedding outside YouTube), every click opens YouTube at that second instead. */
+/* The one video player on a game page, above the "second by second" chart. Sources, in order:
+   1. our own file, when the page is served by experiments/serve_demo.py (plays here, seeks to the exact second);
+   2. YouTube's embedded player, when the video's owner allows embedding;
+   3. otherwise (FIFA blocks embedding outside YouTube) every click opens YouTube at that second in a new tab. */
+const PAGE_TAG = (document.querySelector("main[data-page]") || {}).dataset?.page;
 const YT_ID = (document.querySelector("main[data-yt]") || {}).dataset?.yt;
 const ytUrl = (t) => `https://www.youtube.com/watch?v=${YT_ID}&t=${Math.max(0, Math.round(t))}s`;
-let ytPlayer = null, ytState = "unknown";            // unknown | ok | blocked
+let ytPlayer = null, video = null, ytState = "unknown";   // unknown | local | ok | blocked
+let cursorAt = () => {};                                  // set by timeline(): moves the playhead line
+const playing = () => ytState === "local" || (ytState === "ok" && ytPlayer && ytPlayer.seekTo);
 const ytStatus = (html) => { const s = document.querySelector(".player-status"); if (s) s.innerHTML = html; };
 function ytBlocked() {
   ytState = "blocked";
@@ -97,14 +102,13 @@ function ytBlocked() {
   if (box) box.innerHTML = `<a class="clip-card yt-thumb" href="${ytUrl(0)}" target="_blank" rel="noopener" style="background-image:url(https://i.ytimg.com/vi/${YT_ID}/hqdefault.jpg)"><span>▶ Open on YouTube</span></a>`;
   ytStatus("The rights holder doesn't allow this video to play outside YouTube, so clicks on the chart open YouTube at that second in a new tab.");
 }
-function initPlayer() {
-  if (!YT_ID || !document.getElementById("yt-player")) return;
+function initYouTube() {
   window.onYouTubeIframeAPIReady = () => {
     ytPlayer = new YT.Player("yt-player", {
       videoId: YT_ID, width: "100%", height: "100%",
       playerVars: { rel: 0, playsinline: 1, origin: location.origin },
       events: {
-        onReady: () => { if (ytState !== "blocked") ytState = "ok"; },
+        onReady: () => { if (ytState !== "blocked") { ytState = "ok"; setInterval(() => { if (ytPlayer.getCurrentTime) cursorAt(ytPlayer.getCurrentTime()); }, 500); } },
         onError: (e) => { if ([2, 5, 100, 101, 150, 152, 153].includes(e.data)) ytBlocked(); },
       },
     });
@@ -114,26 +118,68 @@ function initPlayer() {
   s.onerror = ytBlocked;                            // e.g. a host whose security policy blocks YouTube
   document.head.appendChild(s);
 }
+function initPlayer() {
+  const box = document.querySelector(".player .player-frame");
+  if (!box || !PAGE_TAG) return;
+  const src = `video/${PAGE_TAG}.mp4`;
+  const fallback = () => { if (YT_ID) initYouTube(); };
+  if (location.protocol !== "http:" || !/^(127\.0\.0\.1|localhost)$/.test(location.hostname)) return fallback();
+  fetch(src, { method: "HEAD" }).then((r) => {
+    if (!r.ok) return fallback();
+    ytState = "local";
+    box.innerHTML = `<video controls playsinline preload="metadata" src="${src}"></video>`;
+    video = box.querySelector("video");
+    video.addEventListener("timeupdate", () => cursorAt(video.currentTime));
+    video.addEventListener("seeked", () => cursorAt(video.currentTime));
+  }).catch(fallback);
+}
 function seekTo(t, evt) {
-  if (ytState === "blocked" || !ytPlayer || !ytPlayer.seekTo) {
+  t = Math.max(0, t);
+  if (!playing()) {
     if (evt && evt.currentTarget && evt.currentTarget.tagName && evt.currentTarget.tagName.toLowerCase() === "a") return; // the link opens YouTube
-    window.open(ytUrl(t), "_blank", "noopener");
+    if (YT_ID) window.open(ytUrl(t), "_blank", "noopener");
     return;
   }
   if (evt) evt.preventDefault();
-  ytPlayer.seekTo(Math.max(0, t), true);
-  ytPlayer.playVideo();
-  ytStatus(`Playing from ${mmss(Math.round(t))}. <a href="${ytUrl(t)}" target="_blank" rel="noopener">Open on YouTube instead</a>`);
-  document.querySelector(".player").scrollIntoView({ behavior: "smooth", block: "center" });
+  if (ytState === "local") { video.currentTime = t; video.play().catch(() => {}); }
+  else { ytPlayer.seekTo(t, true); ytPlayer.playVideo(); }
+  cursorAt(t);
+  ytStatus(`Playing from ${mmss(Math.round(t))}.${YT_ID ? ` <a href="${ytUrl(t)}" target="_blank" rel="noopener">Open on YouTube instead</a>` : ""}`);
+  const box = document.querySelector(".player").getBoundingClientRect();
+  if (box.top < 0 || box.bottom > innerHeight) document.querySelector(".player").scrollIntoView({ behavior: "smooth", block: "start" });
 }
-// "Watch on YouTube at m:ss" links and clip cards elsewhere on the page seek the same player
+// Jump controls under the player: one chip per goal window and a "jump to m:ss" box
+function playerControls(moments, duration) {
+  const p = document.querySelector(".player");
+  if (!p || p.querySelector(".jumps")) return;
+  const bar = document.createElement("div");
+  bar.className = "jumps";
+  moments.forEach((m) => {
+    const b = document.createElement("a");          // a real link, so it still opens YouTube where nothing plays here
+    if (YT_ID) { b.href = ytUrl(m.start); b.target = "_blank"; b.rel = "noopener"; }
+    b.textContent = `${m.label.replace("Penalty shootout", "Shootout").replace(/ \(.*\)/, "")} · ${mmss(m.start)}`;
+    b.addEventListener("click", (e) => seekTo(m.start, e));
+    bar.appendChild(b);
+  });
+  const f = document.createElement("form");
+  f.innerHTML = `<label>Jump to <input name="t" inputmode="numeric" placeholder="m:ss" aria-label="Time in the video, m:ss or h:mm:ss" size="7"></label><button type="submit">Go</button>`;
+  f.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const parts = f.t.value.trim().split(":").map(Number);
+    if (!parts.length || parts.some((n) => !Number.isFinite(n) || n < 0)) { ytStatus("Type a time like 12:34 or 1:02:03."); return; }
+    seekTo(Math.min(duration, parts.reduce((acc, n) => acc * 60 + n, 0)));
+  });
+  bar.appendChild(f);
+  p.insertBefore(bar, p.querySelector(".player-status"));
+}
+// "Play at m:ss" buttons and YouTube links for this video elsewhere on the page drive the same player
 document.addEventListener("click", (e) => {
   const a = e.target.closest && e.target.closest("a[href*='youtube.com/watch']");
   if (!a || !YT_ID || a.closest("svg") || a.closest(".player")) return;   // chart ticks handle their own clicks
   const href = a.getAttribute("href") || "";
   if (!href.includes(YT_ID)) return;
   const m = href.match(/[?&]t=(\d+)s?/);
-  if (m && ytState !== "blocked" && ytPlayer && ytPlayer.seekTo) { e.preventDefault(); seekTo(+m[1]); }
+  if (m && playing()) { e.preventDefault(); seekTo(+m[1]); }
 });
 
 /* Game: every brand's seconds on screen, ticks coloured by tier, goal windows shaded */
@@ -146,7 +192,7 @@ function timeline(root, brands, moments, duration) {
   moments.forEach((m) => {
     const band = el("rect", { x: x(m.start), y: T - 4, width: x(m.end) - x(m.start), height: rows.length * rowH + 4, fill: "var(--moment)", class: "seek" }, svg);
     hover(band, `<b>${m.label}</b><br>${mmss(m.start)}–${mmss(m.end)} of the video<br>Click to watch from ${mmss(m.start)}`);
-    if (YT_ID) band.addEventListener("click", (e) => seekTo(m.start, e));
+    band.addEventListener("click", (e) => seekTo(m.start, e));
     el("text", { x: x(m.start) + 2, y: T - 10, class: "lbl small" }, svg).textContent = m.label.replace("Penalty shootout", "Shootout").replace(/ \(.*\)/, "").replace("Goal ", "");
   });
   const step = duration <= 180 ? 15 : duration > 1800 ? 600 : 120;
@@ -156,7 +202,7 @@ function timeline(root, brands, moments, duration) {
     el("line", { x1: L, x2: W - R, y1: y + rowH - 1, y2: y + rowH - 1, class: "grid" }, svg);
     el("text", { x: L - 10, y: y + 14, "text-anchor": "end", class: "lbl" }, svg).textContent = r.name;
     el("text", { x: W - R + 6, y: y + 14 }, svg).textContent = r.visible_s + "s";
-    if (YT_ID) {
+    {
       const hit = el("rect", { x: L, y: y + 1, width: W - R - L, height: rowH - 3, fill: "transparent", class: "seek" }, svg);
       const tAt = (e) => { const p = svg.createSVGPoint(); p.x = e.clientX; p.y = e.clientY;
         const q = p.matrixTransform(svg.getScreenCTM().inverse()); return Math.min(duration, Math.max(0, ((q.x - L) / (W - L - R)) * duration)); };
@@ -167,10 +213,13 @@ function timeline(root, brands, moments, duration) {
     r.timeline.forEach(([t]) => {
       const parent = YT_ID ? el("a", { href: ytUrl(t), target: "_blank", rel: "noopener", class: "seek" }, svg) : svg;
       const tick = el("rect", { x: x(t), y: y + 3, width: Math.max(2, x(t + 1) - x(t) - 0.5), height: rowH - 7, fill: TIER[r.tier] || "var(--ink-3)", rx: 1 }, parent);
-      hover(tick, `<b>${r.name}</b> at ${mmss(t)}${YT_ID ? "<br>Click to watch from here" : ""}`);
-      if (YT_ID) parent.addEventListener("click", (e) => seekTo(t, e));
+      hover(tick, `<b>${r.name}</b> at ${mmss(t)}<br>Click to watch from here`);
+      parent.addEventListener("click", (e) => seekTo(t, e));
     });
   });
+  // playhead: follows the video while it plays
+  const head = el("line", { x1: x(0), x2: x(0), y1: T - 4, y2: T + rows.length * rowH, stroke: "var(--accent)", "stroke-width": 2, visibility: "hidden", "pointer-events": "none" }, svg);
+  cursorAt = (t) => { const px = x(Math.min(duration, Math.max(0, t))); head.setAttribute("x1", px); head.setAttribute("x2", px); head.setAttribute("visibility", "visible"); };
 }
 
 function brandTable(root, brands) {
@@ -304,6 +353,7 @@ if (page === "landing") {
     const brands = Object.values(d.brands);
     dumbbell(document.getElementById("dumbbell"), brands, d.duration < 300 ? 3 : 8);  // short clips: fewer seconds per brand
     timeline(document.getElementById("timeline"), brands, d.moments, d.duration);
+    playerControls(d.moments, d.duration);
     brandTable(document.getElementById("brands"), brands);
   }).catch(fail);
 }

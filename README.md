@@ -54,6 +54,19 @@ For the full analysis, in order:
 
 Scripts `01` to `09`, `11` and `13` are the first-iteration method comparison (see `BENCHMARKS.md` v1).
 
+## Live demo with in-page video
+
+The match owners block their YouTube uploads from playing inside other sites, so the public site opens YouTube at the
+right second instead. To give a demo where the video plays in the page and every click on the timeline seeks it:
+
+1. Put the match files in `data/World-Cup/` with the names listed in `experiments/youtube.py` (`VIDEO_FILES`).
+2. `python experiments/serve_demo.py`
+3. Open http://127.0.0.1:8000/ and pick a game page.
+
+Each game page has one player. Clicking a tick, a brand's row, a goal window, a goal button under the player or a
+"▶ Play at m:ss" button jumps it to that second, and a line on the chart follows the playing position. The server only
+listens on this machine and nothing is uploaded. A page whose file is missing falls back to YouTube links.
+
 ## What to expect
 
 - Apple Vision finds about 69% of the sponsor boards a person could identify on our labelled frames (84% of large boards,

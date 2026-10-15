@@ -1,5 +1,5 @@
 """Builds the GitHub Pages copy of the site in docs/ from story/.
-- every figure with data-yt gets a YouTube thumbnail card that opens the video at its timestamp (FIFA blocks embedded players)
+- every figure with data-yt loses its still and keeps its caption and play button (one player per page)
 - index.html (a fragment for the artifact host) is wrapped in a full HTML document
 Images are not copied: the public repo carries no broadcast stills."""
 import re
@@ -17,17 +17,10 @@ for f in ST.iterdir():
 
 
 def embed(m):
-    """FIFA blocks its videos from playing inside other sites (checked on github.io), so each clip becomes YouTube's
-    own thumbnail with a play button that opens the video at the exact second."""
-    fig = m.group(0)
-    vid, t = re.search(r'data-yt="([^"]+)" data-t="(\d+)"', fig).groups()
-    t = int(t)
-    stamp = f"{t // 3600}:{t % 3600 // 60:02d}:{t % 60:02d}" if t >= 3600 else f"{t // 60}:{t % 60:02d}"
-    card = (f'<a class="clip-card yt-thumb" href="https://www.youtube.com/watch?v={vid}&t={t}s" target="_blank" rel="noopener" '
-            f'style="background-image:url(https://i.ytimg.com/vi/{vid}/hqdefault.jpg)"><span>▶ Play from {stamp} on YouTube</span></a>')
-    fig = re.sub(r"<img [^>]*>", card, fig, count=1)
-    fig = re.sub(r'<a class="clip-card" .*?</a>', card, fig, count=1, flags=re.S)
-    return fig
+    """The public site carries no stills (FIFA footage), and each page has a single player, so an evidence figure keeps
+    its caption and its '▶ Play at m:ss' button only."""
+    fig = re.sub(r"<img [^>]*>", "", m.group(0), count=1)
+    return re.sub(r'<a class="clip-card" .*?</a>', "", fig, count=1, flags=re.S)
 
 
 HEAD = ('<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n'
@@ -44,4 +37,4 @@ for f in ST.glob("*.html"):
              "</head>\n<body>\n" + s[main_at:].strip() + "\n</body>\n</html>\n")
     (OUT / f.name).write_text(s)
 (OUT / ".nojekyll").write_text("")
-print("docs/ built:", len(list(OUT.glob("*.html"))), "pages,", n, "YouTube clip cards")
+print("docs/ built:", len(list(OUT.glob("*.html"))), "pages,", n, "evidence figures without stills")

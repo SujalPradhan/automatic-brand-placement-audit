@@ -122,12 +122,12 @@ td.q-weak { background: var(--q-weak); }
 .pager a:hover span { color: var(--nav-ink); }
 .pager a span { font: 600 0.72rem var(--f-ui); text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); }
 .pager a.next { text-align: right; margin-left: auto; }
-/* YouTube clips: a link card in the artifact, an embedded player on the Pages build */
+/* "Play at m:ss": seeks the page's one player (opens YouTube where nothing plays in the page) */
 a.yt { white-space: nowrap; }
+a.play-at { display: inline-block; margin-top: 4px; padding: 3px 10px; border: 1.5px solid var(--accent); border-radius: 999px; font: 600 0.8rem/1.4 var(--f-ui); text-decoration: none; }
+a.play-at:hover { background: var(--accent); color: var(--nav-ink); }
 .clip-card { display: grid; place-items: center; aspect-ratio: 16 / 9; max-width: 100%; background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; text-decoration: none; color: var(--ink); font: 600 1rem var(--f-ui); }
 .clip-card:hover { border-color: var(--accent); color: var(--accent); }
-.yt-embed { aspect-ratio: 16 / 9; max-width: 100%; }
-.yt-embed iframe { width: 100%; height: 100%; border: 0; border-radius: 4px; display: block; }
 .yt-thumb { background-size: cover; background-position: center; position: relative; overflow: hidden; }
 .yt-thumb span { background: rgba(0, 0, 0, 0.72); color: #fff; padding: 10px 16px; border-radius: 999px; font: 600 0.95rem var(--f-ui); }
 .yt-thumb:hover span { background: #c4302b; }
@@ -136,7 +136,13 @@ a.yt { white-space: nowrap; }
 /* YouTube player above the second-by-second chart */
 .player { display: grid; gap: 8px; max-width: 760px; }
 .player-frame { aspect-ratio: 16 / 9; width: 100%; background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; }
-.player-frame iframe, .player-frame > div { width: 100%; height: 100%; border: 0; display: block; }
+.player-frame iframe, .player-frame > div, .player-frame video { width: 100%; height: 100%; border: 0; display: block; background: #000; }
+.jumps { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font: 600 0.82rem/1.3 var(--f-ui); }
+.jumps a, .jumps button { padding: 5px 11px; border: 1.5px solid var(--accent); border-radius: 999px; background: var(--surface); color: var(--accent); font: inherit; text-decoration: none; cursor: pointer; }
+.jumps a:hover, .jumps button:hover { background: var(--accent); color: var(--nav-ink); }
+.jumps form { display: flex; gap: 6px; align-items: center; margin-left: auto; }
+.jumps label { color: var(--ink-2); }
+.jumps input { width: 7.5em; padding: 4px 8px; border: 1px solid var(--rule); border-radius: 6px; background: var(--surface); color: var(--ink); font: 0.85rem var(--f-data); }
 .player-frame .clip-card { height: 100%; aspect-ratio: auto; border: 0; }
 .player-status { font: 0.85rem/1.4 var(--f-ui); color: var(--ink-2); margin: 0; }
 .chart .seek { cursor: pointer; }
