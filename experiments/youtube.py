@@ -26,3 +26,7 @@ def clip(tag, t, caption):
     """A figure the Pages build turns into an embedded player; in the artifact it is a link card."""
     return (f'<figure class="clip" data-yt="{YT[tag]}" data-t="{t}"><a class="clip-card" href="{watch(tag, t)}" target="_blank" rel="noopener">'
             f'<span>▶ Watch at {mmss(t)}</span></a><figcaption>{caption} {link(tag, t)}</figcaption></figure>')
+
+
+PLAYER = ('<div class="player"><div class="player-frame"><div id="yt-player"></div></div>'
+          '<p class="player-status">Click any tick, row or goal window in the chart below to jump the video to that second.</p></div>')

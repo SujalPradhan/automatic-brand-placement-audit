@@ -7,6 +7,8 @@
   --ink-3: #7b857e;
   --rule: #dde3dc;
   --accent: #8a1538;        /* UI accent only */
+  --nav-bg: #8a1538;        /* navigation bar: accent fill */
+  --nav-ink: #ffffff;
   --moment: #f3e3c3;        /* shaded goal windows */
   --t1: #2a78d6;            /* FIFA Partner */
   --t2: #eb6834;            /* World Cup Sponsor */
@@ -28,14 +30,14 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --bg: #111613; --surface: #171d19; --ink: #e9eee9; --ink-2: #b4bdb6; --ink-3: #87918a; --rule: #2a332d;
-    --accent: #e0708f; --moment: #3a3220; --t1: #3987e5; --t2: #d95926; --t3: #199e70; --s1: #87918a; --s2: #9085e9;
+    --accent: #e0708f; --nav-bg: #e0708f; --nav-ink: #111613; --moment: #3a3220; --t1: #3987e5; --t2: #d95926; --t3: #199e70; --s1: #87918a; --s2: #9085e9;
     --q-good: #1f3d2c; --q-fair: #403517; --q-weak: #4a2421; --bar-good: #2fb883; --bar-fair: #e0ae2f; --bar-weak: #e5675a;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
   --bg: #111613; --surface: #171d19; --ink: #e9eee9; --ink-2: #b4bdb6; --ink-3: #87918a; --rule: #2a332d;
-  --accent: #e0708f; --moment: #3a3220; --t1: #3987e5; --t2: #d95926; --t3: #199e70; --s1: #87918a; --s2: #9085e9;
+  --accent: #e0708f; --nav-bg: #e0708f; --nav-ink: #111613; --moment: #3a3220; --t1: #3987e5; --t2: #d95926; --t3: #199e70; --s1: #87918a; --s2: #9085e9;
     --q-good: #1f3d2c; --q-fair: #403517; --q-weak: #4a2421; --bar-good: #2fb883; --bar-fair: #e0ae2f; --bar-weak: #e5675a;
   color-scheme: dark;
 }
@@ -56,9 +58,10 @@ a { color: var(--accent); }
 .num { font-family: var(--f-data); font-variant-numeric: tabular-nums; }
 .muted { color: var(--ink-3); }
 
-nav.top { display: flex; flex-wrap: wrap; gap: 6px 18px; font: 600 0.85rem/1.4 var(--f-ui); }
-nav.top a { text-decoration: none; color: var(--ink-2); }
-nav.top a[aria-current="page"] { color: var(--ink); border-bottom: 2px solid var(--accent); }
+nav.top { display: flex; flex-wrap: wrap; gap: 6px; padding: 8px; border-radius: 10px; background: var(--nav-bg); font: 600 1rem/1.3 var(--f-ui); }
+nav.top a { text-decoration: none; color: var(--nav-ink); padding: 7px 12px; border-radius: 7px; }
+nav.top a:hover { background: color-mix(in srgb, var(--nav-ink) 16%, transparent); }
+nav.top a[aria-current="page"] { background: var(--nav-ink); color: var(--nav-bg); }
 
 .hero { display: grid; gap: 16px; }
 .stats { display: flex; flex-wrap: wrap; gap: 28px; }
@@ -113,11 +116,12 @@ td.q-weak { background: var(--q-weak); }
 .legend i.sq { border-radius: 2px; border: 1px solid var(--rule); }
 
 /* previous / next at the foot of every page */
-.pager { display: flex; justify-content: space-between; gap: 16px; border-top: 1px solid var(--rule); padding-top: 18px; font: 600 0.95rem/1.3 var(--f-ui); }
-.pager a { display: grid; gap: 2px; text-decoration: none; color: var(--ink); max-width: 48%; }
+.pager { display: flex; justify-content: space-between; gap: 16px; border-top: 1px solid var(--rule); padding-top: 20px; font: 600 1.05rem/1.3 var(--f-ui); }
+.pager a { display: grid; gap: 4px; text-decoration: none; color: var(--ink); max-width: 48%; padding: 12px 18px; border: 2px solid var(--accent); border-radius: 10px; background: var(--surface); }
+.pager a:hover { background: var(--accent); color: var(--nav-ink); }
+.pager a:hover span { color: var(--nav-ink); }
 .pager a span { font: 600 0.72rem var(--f-ui); text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); }
 .pager a.next { text-align: right; margin-left: auto; }
-.pager a:hover { color: var(--accent); }
 /* YouTube clips: a link card in the artifact, an embedded player on the Pages build */
 a.yt { white-space: nowrap; }
 .clip-card { display: grid; place-items: center; aspect-ratio: 16 / 9; max-width: 100%; background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; text-decoration: none; color: var(--ink); font: 600 1rem var(--f-ui); }
@@ -127,3 +131,12 @@ a.yt { white-space: nowrap; }
 .yt-thumb { background-size: cover; background-position: center; position: relative; overflow: hidden; }
 .yt-thumb span { background: rgba(0, 0, 0, 0.72); color: #fff; padding: 10px 16px; border-radius: 999px; font: 600 0.95rem var(--f-ui); }
 .yt-thumb:hover span { background: #c4302b; }
+.chart-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 20px 28px; }
+.chart-grid .chart svg { width: 100%; height: auto; max-width: 380px; }
+/* YouTube player above the second-by-second chart */
+.player { display: grid; gap: 8px; max-width: 760px; }
+.player-frame { aspect-ratio: 16 / 9; width: 100%; background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; }
+.player-frame iframe, .player-frame > div { width: 100%; height: 100%; border: 0; display: block; }
+.player-frame .clip-card { height: 100%; aspect-ratio: auto; border: 0; }
+.player-status { font: 0.85rem/1.4 var(--f-ui); color: var(--ink-2); margin: 0; }
+.chart .seek { cursor: pointer; }

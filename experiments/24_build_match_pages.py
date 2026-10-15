@@ -6,7 +6,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from common import BRAND_INFO
 from presence import presence
-from youtube import clip
+from youtube import PLAYER, YT, clip
 
 ROOT = Path(__file__).resolve().parents[1]
 EV, ST = ROOT / "evidence", ROOT / "story"
@@ -85,7 +85,7 @@ HEAD = """<!doctype html>
 
 def page(cur, tag, title, eyebrow, h1, dek, beats, bench_rows, bench_note, caveat, m, grows, clips=""):
     cwrap = lambda s: f'<div class="col">{s}</div>'
-    return HEAD.format(title=title) + f"""<main class="wrap" data-page="{tag}">
+    return HEAD.format(title=title) + f"""<main class="wrap" data-page="{tag}" data-yt="{YT[tag]}">
 
   {nav(cur)}
 
@@ -114,6 +114,7 @@ def page(cur, tag, title, eyebrow, h1, dek, beats, bench_rows, bench_note, cavea
       <h2 id="b2">Every sponsor, second by second</h2>
       <p>{m["live_play_s"]:,} seconds of live play, with at least one sponsor board visible in {m["seconds_with_any_sponsor_live"]:,} of them. {len(m["brands"])} brands were detected.</p>
     </div>
+    {PLAYER}
     <figure>
       <div class="legend"><span><i style="background:var(--t1)"></i>FIFA Partner</span><span><i style="background:var(--t2)"></i>World Cup Sponsor</span><span><i style="background:var(--t3)"></i>Regional supporter</span><span><i style="background:var(--s1)"></i>Not in our sponsor list</span><span><i style="background:var(--moment);border:1px solid var(--rule)"></i>Goal window</span></div>
       <div class="chart" id="timeline"></div>

@@ -85,6 +85,57 @@ function dumbbell(root, brands, minSeconds = 8) {
   });
 }
 
+/* YouTube player for the "second by second" section. Clicking the timeline seeks it; if YouTube refuses to play the
+   video here (FIFA blocks embedding outside YouTube), every click opens YouTube at that second instead. */
+const YT_ID = (document.querySelector("main[data-yt]") || {}).dataset?.yt;
+const ytUrl = (t) => `https://www.youtube.com/watch?v=${YT_ID}&t=${Math.max(0, Math.round(t))}s`;
+let ytPlayer = null, ytState = "unknown";            // unknown | ok | blocked
+const ytStatus = (html) => { const s = document.querySelector(".player-status"); if (s) s.innerHTML = html; };
+function ytBlocked() {
+  ytState = "blocked";
+  const box = document.querySelector(".player .player-frame");
+  if (box) box.innerHTML = `<a class="clip-card yt-thumb" href="${ytUrl(0)}" target="_blank" rel="noopener" style="background-image:url(https://i.ytimg.com/vi/${YT_ID}/hqdefault.jpg)"><span>▶ Open on YouTube</span></a>`;
+  ytStatus("The rights holder doesn't allow this video to play outside YouTube, so clicks on the chart open YouTube at that second in a new tab.");
+}
+function initPlayer() {
+  if (!YT_ID || !document.getElementById("yt-player")) return;
+  window.onYouTubeIframeAPIReady = () => {
+    ytPlayer = new YT.Player("yt-player", {
+      videoId: YT_ID, width: "100%", height: "100%",
+      playerVars: { rel: 0, playsinline: 1, origin: location.origin },
+      events: {
+        onReady: () => { if (ytState !== "blocked") ytState = "ok"; },
+        onError: (e) => { if ([2, 5, 100, 101, 150, 152, 153].includes(e.data)) ytBlocked(); },
+      },
+    });
+  };
+  const s = document.createElement("script");
+  s.src = "https://www.youtube.com/iframe_api";
+  s.onerror = ytBlocked;                            // e.g. a host whose security policy blocks YouTube
+  document.head.appendChild(s);
+}
+function seekTo(t, evt) {
+  if (ytState === "blocked" || !ytPlayer || !ytPlayer.seekTo) {
+    if (evt && evt.currentTarget && evt.currentTarget.tagName && evt.currentTarget.tagName.toLowerCase() === "a") return; // the link opens YouTube
+    window.open(ytUrl(t), "_blank", "noopener");
+    return;
+  }
+  if (evt) evt.preventDefault();
+  ytPlayer.seekTo(Math.max(0, t), true);
+  ytPlayer.playVideo();
+  ytStatus(`Playing from ${mmss(Math.round(t))}. <a href="${ytUrl(t)}" target="_blank" rel="noopener">Open on YouTube instead</a>`);
+  document.querySelector(".player").scrollIntoView({ behavior: "smooth", block: "center" });
+}
+// "Watch on YouTube at m:ss" links and clip cards elsewhere on the page seek the same player
+document.addEventListener("click", (e) => {
+  const a = e.target.closest && e.target.closest("a[href*='youtube.com/watch']");
+  if (!a || !YT_ID || a.closest("svg") || a.closest(".player")) return;   // chart ticks handle their own clicks
+  const href = a.getAttribute("href") || "";
+  if (!href.includes(YT_ID)) return;
+  const m = href.match(/[?&]t=(\d+)s?/);
+  if (m && ytState !== "blocked" && ytPlayer && ytPlayer.seekTo) { e.preventDefault(); seekTo(+m[1]); }
+});
+
 /* Game: every brand's seconds on screen, ticks coloured by tier, goal windows shaded */
 function timeline(root, brands, moments, duration) {
   const rows = brands.filter((b) => b.visible_s >= 3).sort((a, b) => b.visible_s - a.visible_s);
@@ -93,8 +144,9 @@ function timeline(root, brands, moments, duration) {
   const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, width: W, height: H, role: "img",
     "aria-label": "Second-by-second timeline of every sponsor detected, with goal windows shaded" }, root);
   moments.forEach((m) => {
-    hover(el("rect", { x: x(m.start), y: T - 4, width: x(m.end) - x(m.start), height: rows.length * rowH + 4, fill: "var(--moment)" }, svg),
-      `<b>${m.label}</b><br>${mmss(m.start)}–${mmss(m.end)} of the video`);
+    const band = el("rect", { x: x(m.start), y: T - 4, width: x(m.end) - x(m.start), height: rows.length * rowH + 4, fill: "var(--moment)", class: "seek" }, svg);
+    hover(band, `<b>${m.label}</b><br>${mmss(m.start)}–${mmss(m.end)} of the video<br>Click to watch from ${mmss(m.start)}`);
+    if (YT_ID) band.addEventListener("click", (e) => seekTo(m.start, e));
     el("text", { x: x(m.start) + 2, y: T - 10, class: "lbl small" }, svg).textContent = m.label.replace("Penalty shootout", "Shootout").replace(/ \(.*\)/, "").replace("Goal ", "");
   });
   const step = duration <= 180 ? 15 : duration > 1800 ? 600 : 120;
@@ -104,9 +156,19 @@ function timeline(root, brands, moments, duration) {
     el("line", { x1: L, x2: W - R, y1: y + rowH - 1, y2: y + rowH - 1, class: "grid" }, svg);
     el("text", { x: L - 10, y: y + 14, "text-anchor": "end", class: "lbl" }, svg).textContent = r.name;
     el("text", { x: W - R + 6, y: y + 14 }, svg).textContent = r.visible_s + "s";
+    if (YT_ID) {
+      const hit = el("rect", { x: L, y: y + 1, width: W - R - L, height: rowH - 3, fill: "transparent", class: "seek" }, svg);
+      const tAt = (e) => { const p = svg.createSVGPoint(); p.x = e.clientX; p.y = e.clientY;
+        const q = p.matrixTransform(svg.getScreenCTM().inverse()); return Math.min(duration, Math.max(0, ((q.x - L) / (W - L - R)) * duration)); };
+      hit.addEventListener("pointermove", (e) => { tip.innerHTML = `<b>${r.name}</b> row<br>Click to watch from ${mmss(Math.round(tAt(e)))}`; tip.hidden = false; moveTip(e); });
+      hit.addEventListener("pointerleave", () => { tip.hidden = true; });
+      hit.addEventListener("click", (e) => seekTo(tAt(e)));
+    }
     r.timeline.forEach(([t]) => {
-      hover(el("rect", { x: x(t), y: y + 3, width: Math.max(2, x(t + 1) - x(t) - 0.5), height: rowH - 7, fill: TIER[r.tier] || "var(--ink-3)", rx: 1 }, svg),
-        `<b>${r.name}</b> at ${mmss(t)}`);
+      const parent = YT_ID ? el("a", { href: ytUrl(t), target: "_blank", rel: "noopener", class: "seek" }, svg) : svg;
+      const tick = el("rect", { x: x(t), y: y + 3, width: Math.max(2, x(t + 1) - x(t) - 0.5), height: rowH - 7, fill: TIER[r.tier] || "var(--ink-3)", rx: 1 }, parent);
+      hover(tick, `<b>${r.name}</b> at ${mmss(t)}${YT_ID ? "<br>Click to watch from here" : ""}`);
+      if (YT_ID) parent.addEventListener("click", (e) => seekTo(t, e));
     });
   });
 }
@@ -156,7 +218,7 @@ function costBars(root, d) {
   }
   const short = { apple_fullframe: "Apple, full frame only", apple_8w: "Apple, 8 workers", apple_4w: "Apple, 4 workers",
     gemini: "Gemini Flash-Lite", cloud_vision: "Cloud Vision text", rekognition: "AWS Rekognition video (price only)", rekognition_text: "AWS Rekognition text (price only)",
-    vi: "Video Intelligence logos", apple_vi: "Apple + Video Intelligence" };
+    vi: "Video Intelligence logos" };
   rows.forEach((r, i) => {
     const y = T + i * rowH + rowH / 2;
     el("text", { x: L - 12, y: y + 4, "text-anchor": "end", class: "lbl" }, svg).textContent = short[r.id] || r.name;
@@ -172,37 +234,58 @@ function costBars(root, d) {
   });
 }
 
-/* Cost page: quality against cost per video hour, log x axis; whiskers span each option's price range */
-function costScatter(root, d) {
-  const pts = d.options.filter((o) => o.quality != null);
-  const W = 760, L = 60, R = 30, T = 20, B = 46, H = 380;
-  const lx = (v) => Math.log10(v), x0 = lx(0.1), x1 = lx(20);
-  const x = (v) => L + ((lx(v) - x0) / (x1 - x0)) * (W - L - R);
-  const y = (q) => T + (1 - (q - 0.3) / 0.5) * (H - T - B);
-  const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, width: W, height: H, role: "img",
-    "aria-label": "Quality against cost per video hour for each measured option, cost on a log scale" }, root);
-  [0.1, 0.3, 1, 3, 10].forEach((v) => {
-    el("line", { x1: x(v), x2: x(v), y1: T, y2: H - B, class: "grid" }, svg);
-    el("text", { x: x(v), y: H - B + 18, "text-anchor": "middle" }, svg).textContent = "$" + v;
-  });
-  [0.3, 0.4, 0.5, 0.6, 0.7, 0.8].forEach((q) => {
-    el("line", { x1: L, x2: W - R, y1: y(q), y2: y(q), class: "grid" }, svg);
-    el("text", { x: L - 8, y: y(q) + 4, "text-anchor": "end" }, svg).textContent = q.toFixed(1);
-  });
-  el("text", { x: (L + W - R) / 2, y: H - 6, "text-anchor": "middle" }, svg).textContent = "Cost per video hour (log scale)";
-  el("text", { x: 14, y: (T + H - B) / 2, transform: `rotate(-90 14 ${(T + H - B) / 2})`, "text-anchor": "middle" }, svg).textContent = "Quality";
-  const short = { apple_fullframe: "Apple, full frame only", apple_8w: "Apple, 8 workers", apple_4w: "Apple, 4 workers",
-    gemini: "Gemini Flash-Lite", cloud_vision: "Cloud Vision text", vi: "Video Intelligence", apple_vi: "Apple + Video Intelligence" };
-  const place = { apple_4w: [0, 18], apple_8w: [0, -14], apple_fullframe: [0, 20], gemini: [0, -14], cloud_vision: [0, 20], vi: [0, 20], apple_vi: [0, -14] };
-  pts.forEach((o) => {
-    const lo = o.usd_per_video_hour_low, hi = o.usd_per_video_hour_high, mid = Math.sqrt(lo * hi), cy = y(o.quality);
-    const apple = o.id.startsWith("apple_") && o.id !== "apple_vi";
-    if (hi > lo) el("line", { x1: x(lo), x2: x(hi), y1: cy, y2: cy, stroke: "var(--ink-3)", "stroke-width": 2 }, svg);
-    el("circle", { cx: x(mid), cy, r: 7, fill: apple ? "var(--s2)" : "var(--s1)", stroke: "var(--surface)", "stroke-width": 2 }, svg);
-    const [dx, dy] = place[o.id] || [0, -14];
-    el("text", { x: x(mid) + dx, y: cy + dy, "text-anchor": "middle", class: "lbl small" }, svg).textContent = short[o.id] || o.name;
-    hover(el("circle", { cx: x(mid), cy, r: 16, fill: "transparent" }, svg),
-      `<b>${o.name}</b><br>$${lo.toFixed(2)}${hi > lo ? "–$" + hi.toFixed(2) : ""} per video hour<br>quality ${o.quality} (all boards ${Math.round(o.recall_all * 100)}%, small ${Math.round(o.recall_small * 100)}%)`);
+/* Cost page: 2x2 small multiples. x = cost or time per video hour (log), y = large- or small-board recall */
+function costGrid(root, d) {
+  const pts = d.options.filter((o) => o.recall_large != null && o.recall_small != null);
+  const short = { apple_fullframe: "Apple, full frame", apple_8w: "Apple, 8 workers", apple_4w: "Apple, 4 workers",
+    gemini: "Gemini Flash-Lite", cloud_vision: "Cloud Vision", vi: "Video Intelligence" };
+  const fmtMin = (m) => (m >= 60 ? (m / 60).toFixed(1) + " h" : Math.round(m) + " min");
+  const X = {
+    cost: { title: "Cost per video hour", lo: 0.1, hi: 20, ticks: [0.1, 0.3, 1, 3, 10], fmt: (v) => "$" + v,
+      get: (o) => [o.usd_per_video_hour_low, o.usd_per_video_hour_high], show: (v) => "$" + v.toFixed(2) },
+    time: { title: "Time per video hour", lo: 5, hi: 300, ticks: [5, 15, 30, 60, 180], fmt: (v) => (v >= 60 ? v / 60 + " h" : v + " min"),
+      get: (o) => [o.minutes_per_video_hour_low ?? o.minutes_per_video_hour, o.minutes_per_video_hour], show: fmtMin },
+  };
+  const Y = {
+    large: { title: "Large boards found", lo: 0.4, hi: 1.0, ticks: [0.4, 0.6, 0.8, 1.0], get: (o) => o.recall_large },
+    small: { title: "Small boards found", lo: 0.0, hi: 0.7, ticks: [0, 0.2, 0.4, 0.6], get: (o) => o.recall_small },
+  };
+  const panels = [["cost", "large"], ["cost", "small"], ["time", "large"], ["time", "small"]];
+  panels.forEach(([xk, yk]) => {
+    const ax = X[xk], ay = Y[yk];
+    const W = 380, L = 46, R = 16, T = 30, B = 40, H = 300;
+    const lx = Math.log10;
+    const x = (v) => L + ((lx(v) - lx(ax.lo)) / (lx(ax.hi) - lx(ax.lo))) * (W - L - R);
+    const y = (v) => T + (1 - (v - ay.lo) / (ay.hi - ay.lo)) * (H - T - B);
+    const cell = document.createElement("div");
+    cell.className = "chart";
+    root.appendChild(cell);
+    const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, width: W, height: H, role: "img",
+      "aria-label": `${ay.title} against ${ax.title.toLowerCase()} on a log scale` }, cell);
+    el("text", { x: 0, y: 14, class: "lbl" }, svg).textContent = `${ay.title} vs ${ax.title.toLowerCase()}`;
+    ax.ticks.forEach((v) => {
+      el("line", { x1: x(v), x2: x(v), y1: T, y2: H - B, class: "grid" }, svg);
+      el("text", { x: x(v), y: H - B + 16, "text-anchor": "middle", class: "small" }, svg).textContent = ax.fmt(v);
+    });
+    ay.ticks.forEach((v) => {
+      el("line", { x1: L, x2: W - R, y1: y(v), y2: y(v), class: "grid" }, svg);
+      el("text", { x: L - 6, y: y(v) + 4, "text-anchor": "end", class: "small" }, svg).textContent = Math.round(v * 100) + "%";
+    });
+    el("text", { x: (L + W - R) / 2, y: H - 6, "text-anchor": "middle", class: "small" }, svg).textContent = ax.title + " (log scale)";
+    const placed = [];
+    [...pts].sort((a, b) => ay.get(b) - ay.get(a)).forEach((o) => {
+      const [lo, hi] = ax.get(o), mid = Math.sqrt(lo * hi), cx = x(mid), cy = y(ay.get(o));
+      const apple = o.id.startsWith("apple_");
+      if (hi > lo * 1.02) el("line", { x1: x(lo), x2: x(hi), y1: cy, y2: cy, stroke: "var(--ink-3)", "stroke-width": 2 }, svg);
+      el("circle", { cx, cy, r: 6, fill: apple ? "var(--s2)" : "var(--s1)", stroke: "var(--surface)", "stroke-width": 2 }, svg);
+      let ly = cy - 10;
+      while (placed.some(([px, py]) => Math.abs(px - cx) < 90 && Math.abs(py - ly) < 12)) ly += 24;
+      placed.push([cx, ly]);
+      const anchor = cx > W - 90 ? "end" : cx < L + 50 ? "start" : "middle";
+      el("text", { x: cx, y: ly, "text-anchor": anchor, class: "lbl small" }, svg).textContent = short[o.id] || o.name;
+      hover(el("circle", { cx, cy, r: 14, fill: "transparent" }, svg),
+        `<b>${o.name}</b><br>${ax.title}: ${ax.show(lo)}${hi > lo * 1.02 ? " to " + ax.show(hi) : ""}<br>${ay.title}: ${Math.round(ay.get(o) * 100)}%`);
+    });
   });
 }
 
@@ -214,8 +297,9 @@ if (page === "landing") {
     accuracyTable(document.getElementById("accuracy"), d.scores);
   }).catch(fail);
 } else if (page === "cost") {
-  fetch("cost_model.json").then((r) => r.json()).then((d) => { costScatter(document.getElementById("scatter"), d); costBars(document.getElementById("costbars"), d); }).catch(fail);
+  fetch("cost_model.json").then((r) => r.json()).then((d) => { costGrid(document.getElementById("scatter"), d); costBars(document.getElementById("costbars"), d); }).catch(fail);
 } else if (page) {
+  initPlayer();
   fetch(`game-${page}.json`).then((r) => r.json()).then((d) => {
     const brands = Object.values(d.brands);
     dumbbell(document.getElementById("dumbbell"), brands, d.duration < 300 ? 3 : 8);  // short clips: fewer seconds per brand

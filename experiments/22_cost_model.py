@@ -30,7 +30,8 @@ eng = {n: json.loads((EV / "engines" / f"{n}.json").read_text()) for n in
 
 def recall(n):
     r = eng[n]["recall"]["pooled"]
-    return {"all": r["all"]["recall"], "small": r["small"]["recall"], "found": r["all"]["found"], "of": r["all"]["of"]}
+    return {"all": r["all"]["recall"], "small": r["small"]["recall"], "large": r["large"]["found"] / r["large"]["of"],
+            "found": r["all"]["found"], "of": r["all"]["of"]}
 
 
 # ---- measured throughput of Apple Vision (frames per second, whole machine) --------------------------------------
@@ -56,6 +57,7 @@ def add(id, name, usd_low, usd_high, rec, basis, measured, note=""):
     o = {"id": id, "name": name, "usd_low": round(usd_low), "usd_high": round(usd_high),
          "usd_per_video_hour_low": round(usd_low / HOURS, 2), "usd_per_video_hour_high": round(usd_high / HOURS, 2),
          "recall_all": rec.get("all") if rec else None, "recall_small": rec.get("small") if rec else None,
+         "recall_large": rec.get("large") if rec else None,
          "basis": basis, "accuracy_measured": measured, "note": note}
     assert usd_low <= usd_high
     opts.append(o)
@@ -115,14 +117,12 @@ add("cloud_vision", "Google Cloud Vision text detection per frame", one_month, t
 # Video Intelligence logo detection: $0.15/min after 1,000 free; lower tiers are $0.135 and $0.12 (boundaries not stated).
 vi_hi = (MINUTES - 1000) * p("vi_logo_per_min")
 vi_lo = (MINUTES - 1000) * 0.12
-vi_rec = {"all": (35 + 28 + 16) / 176, "small": (4 + 8 + 1) / 46}  # v3 per-game VI recall counts, same 156 frames
+_sc = json.loads((EV / "scores.json").read_text())  # v3 per-game VI counts on the same 156 frames
+_vi = lambda k: sum(_sc[g]["vi"][k]["found"] for g in _sc if "vi" in _sc[g]) / sum(_sc[g]["vi"][k]["of"] for g in _sc if "vi" in _sc[g])
+vi_rec = {"all": _vi("board_all"), "small": _vi("board_S"), "large": _vi("board_L")}
+assert abs(vi_rec["large"] - 66 / 130) < 1e-9 and abs(vi_rec["small"] - 13 / 46) < 1e-9
 add("vi", "Google Video Intelligence logo detection", vi_lo, vi_hi, vi_rec,
     "6,000,000 minutes x $0.12-$0.15", True, "$0.15 is the list price; $0.135 and $0.12 are the 1-year and 3-year savings-plan commitment rates")
-
-# Apple + VI fused (the v3 pipeline).
-fused_rec = {"all": (57 + 54 + 25) / 176, "small": (6 + 14 + 1) / 46}
-add("apple_vi", "Apple Vision + Video Intelligence (the v3 pipeline)", A8_LO + vi_lo, A8_HI + vi_hi, fused_rec,
-    "Apple (4 workers) + Video Intelligence", True)
 
 # Rekognition DetectText per frame: per-image tiers 0.001 (to 1M), 0.0008 (to 5M), 0.0006 (to 35M), 0.00025 beyond, per month.
 def rek_text(images):
@@ -165,7 +165,7 @@ mins = {
     "apple_4w": SEC_4W[1] / 60, "apple_8w": SEC_8W[1] / 60, "apple_fullframe": SEC_FF[1] / 60,
     "gemini": 3600 * eng["gemini_flash"]["sec_per_frame"] / 60,
     "cloud_vision": 3600 * eng["cloud_vision_text"]["sec_per_frame"] / 60,
-    "vi": VI_MIN, "apple_vi": max(SEC_8W[1] / 60, VI_MIN), "rekognition": None, "rekognition_text": None,
+    "vi": VI_MIN, "rekognition": None, "rekognition_text": None,
 }
 notes = {
     "apple_4w": "one Mac host, 4 workers, measured on two full matches",
@@ -174,7 +174,6 @@ notes = {
     "gemini": "one request at a time at the measured 2.6 s per frame; parallel requests would cut this, not measured",
     "cloud_vision": "one request at a time at the measured 0.83 s per frame; parallel requests would cut this, not measured",
     "vi": "upload plus Google processing, measured on one 104-minute match; our short clips ran slower per minute",
-    "apple_vi": "the two run side by side; Video Intelligence is the slower path",
     "rekognition": "not measured", "rekognition_text": "not measured",
 }
 for o in opts:
@@ -256,7 +255,7 @@ out["two_pass"] = two
 assert abs(out["headline"]["apple_usd"] - min(runs8.values()) / 3600 * HOST * HOURS) < 1
 assert abs(vi_hi - 5_999_000 * 0.15) < 1
 by = {o["id"]: o for o in opts}
-assert by["apple_vi"]["usd_high"] == by["apple_8w"]["usd_high"] + by["vi"]["usd_high"]
+assert "apple_vi" not in by
 assert by["apple_8w"]["usd_high"] < by["apple_4w"]["usd_high"] and by["apple_8w"]["usd_low"] < by["apple_4w"]["usd_low"]
 (EV / "cost_model.json").write_text(json.dumps(out, indent=1))
 for o in opts:

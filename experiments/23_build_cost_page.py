@@ -23,7 +23,7 @@ _lr = json.loads((EV / "engines" / "apple_baseline.json").read_text())["recall"]
 large_rec = _lr["found"] / _lr["of"]
 PL_RUNS = "; ".join(f"{k} ({v:.1f} min per hour)" for k, v in PL["runs"].items())
 HH4_TXT = "{:,.0f}".format(100000 * min_4w_hi / 60)
-cloud = [O[i] for i in ("gemini", "cloud_vision", "vi", "rekognition", "rekognition_text")]
+cloud = [O[i] for i in ("gemini", "cloud_vision", "vi")]  # measured cloud options only; Rekognition is price only
 cloud_lo, cloud_hi = min(o["usd_low"] for o in cloud), max(o["usd_high"] for o in cloud)
 
 def tm(v):
@@ -142,12 +142,12 @@ html = f"""<!doctype html>
   <section aria-labelledby="c0">
     <div class="col">
       <h2 id="c0">Cheap first, expensive where it matters</h2>
-      <p>Each dot is one way of reading the boards. Further right costs more per video hour; higher finds more. Quality here is the average of two measured shares: all boards found, and small boards found.</p>
+      <p>Each dot is one way of reading the boards. Right means more expensive or slower; up means more boards found. Both horizontal axes are logarithmic, so each step is ten times more. Large and small boards are shown separately.</p>
     </div>
     <figure>
-      <div class="legend"><span><i style="background:var(--s2)"></i>Apple Vision on a Mac</span><span><i style="background:var(--s1)"></i>Cloud APIs</span><span class="muted">Lines show each option's price range. AWS Rekognition is left out: its accuracy was not measured.</span></div>
-      <div class="chart" id="scatter"></div>
-      <figcaption>Quality from the 156 hand-labelled frames (176 boards). Cost per video hour, start to finish, at list prices.</figcaption>
+      <div class="legend"><span><i style="background:var(--s2)"></i>Apple Vision on a Mac</span><span><i style="background:var(--s1)"></i>Cloud APIs</span><span class="muted">Lines show each option's range. AWS Rekognition is left out: its accuracy was not measured. Gemini and Cloud Vision times are one request at a time.</span></div>
+      <div class="chart-grid" id="scatter"></div>
+      <figcaption>Recall from the 156 hand-labelled frames (130 large boards, 46 small). Cost and time per video hour, start to finish, at list prices.</figcaption>
     </figure>
     <div class="col">
       <p><strong>A two-pass plan.</strong> Run Apple Vision on every hour, then send only the high-priority hours to Gemini Flash-Lite, which found {pct(O["gemini"]["recall_all"])} of boards against Apple's {pct(O["apple_8w"]["recall_all"])}.</p>
@@ -176,7 +176,7 @@ html = f"""<!doctype html>
       <p>Three things stand out:</p>
       <ul class="plain">
         <li><strong>Apple's reader is the cost winner.</strong> At 1 frame per second it needs about {HH4_TXT} Mac host-hours, {k(h["apple_usd"])} to {k(h["apple_usd_high"])}.</li>
-        <li><strong>Video Intelligence is the most expensive way to add recall.</strong> It adds about {round((O["apple_vi"]["recall_all"] - O["apple_4w"]["recall_all"]) * 100)} points of board recall for {k(h["vi_usd_low"])} to {k(h["vi_usd_high"])} more.</li>
+        <li><strong>Video Intelligence is the most expensive option we measured.</strong> On its own it costs ${O["vi"]["usd_per_video_hour_low"]:.2f} to ${O["vi"]["usd_per_video_hour_high"]:.2f} per video hour and found {pct(O["vi"]["recall_all"])} of boards.</li>
         <li><strong>Gemini finds the most boards,</strong> including {pct(O["gemini"]["recall_small"])} of the small ones, at {k(O["gemini"]["usd_low"])} to {k(O["gemini"]["usd_high"])}. That is {O["gemini"]["usd_low"] / h["apple_usd_high"]:.1f}–{O["gemini"]["usd_high"] / h["apple_usd_high"]:.1f}× the Apple price. Whether the extra boards are worth it depends on the client.</li>
       </ul>
     </div>

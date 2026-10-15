@@ -3,8 +3,9 @@ the figure gets data-yt/data-t (the Pages build swaps the still for an embedded 
 import re
 from pathlib import Path
 
-from youtube import SHOTS, YT, link
+from youtube import PLAYER, SHOTS, YT, link
 
+PAGE_TAG = {"game-2022.html": "wc_final", "game-2026.html": "wc2026", "game-2026-final.html": "wc2026_final"}
 ST = Path(__file__).resolve().parents[1] / "story"
 for f in ("index.html", "game-2022.html", "game-2026.html", "game-2026-final.html"):
     p = ST / f
@@ -19,5 +20,10 @@ for f in ("index.html", "game-2022.html", "game-2026.html", "game-2026-final.htm
         return fig.replace("</figcaption>", f" {link(tag, t)}</figcaption>")
 
     s2 = re.sub(r'<figure[^>]*><img src="img/[^"]+"[^>]*>.*?</figure>', fix, s, flags=re.S)
+    tag = PAGE_TAG.get(f)
+    if tag:
+        s2 = re.sub(r'<main class="wrap" data-page="([^"]+)"[^>]*>', lambda m: f'<main class="wrap" data-page="{m.group(1)}" data-yt="{YT[tag]}">', s2, count=1)
+        s2 = re.sub(r'\s*<div class="player">.*?</p></div>', "", s2, flags=re.S)
+        s2 = re.sub(r'(\n\s*<figure>\s*<div class="legend">(?:(?!</figure>).)*?id="timeline")', "\n    " + PLAYER + r"\1", s2, count=1, flags=re.S)
     p.write_text(s2)
     print(f, s2.count("data-yt="), "clips")
