@@ -54,7 +54,8 @@
    "note": "low: timed one-hour run on an idle Mac; high: full-match speed on a shared Mac",
    "minutes_per_video_hour": 23.8,
    "time_note": "one Mac host, 4 workers, measured on two full matches",
-   "minutes_per_video_hour_low": 20.7
+   "minutes_per_video_hour_low": 20.7,
+   "quality": 0.488
   },
   {
    "id": "apple_8w",
@@ -70,7 +71,8 @@
    "note": "three timed runs on an idle Mac (full-match hour, two highlight clips); the EC2 host's own speed is not measured",
    "minutes_per_video_hour": 15.1,
    "time_note": "one Mac host, 8 workers, measured on 300 frames",
-   "minutes_per_video_hour_low": 12.5
+   "minutes_per_video_hour_low": 12.5,
+   "quality": 0.488
   },
   {
    "id": "apple_fullframe",
@@ -86,7 +88,8 @@
    "note": "single process; more workers would be cheaper, not measured",
    "minutes_per_video_hour": 9.7,
    "time_note": "one process, measured per frame",
-   "minutes_per_video_hour_low": 9.2
+   "minutes_per_video_hour_low": 9.2,
+   "quality": 0.415
   },
   {
    "id": "gemini",
@@ -102,7 +105,8 @@
    "note": "tokens were measured on gemini-3.1-flash-lite; priced at the confirmed 3.5 Flash-Lite rates",
    "minutes_per_video_hour": 155.8,
    "time_note": "one request at a time at the measured 2.6 s per frame; parallel requests would cut this, not measured",
-   "minutes_per_video_hour_low": null
+   "minutes_per_video_hour_low": null,
+   "quality": 0.73
   },
   {
    "id": "cloud_vision",
@@ -118,7 +122,8 @@
    "note": "",
    "minutes_per_video_hour": 50.0,
    "time_note": "one request at a time at the measured 0.83 s per frame; parallel requests would cut this, not measured",
-   "minutes_per_video_hour_low": null
+   "minutes_per_video_hour_low": null,
+   "quality": 0.607
   },
   {
    "id": "vi",
@@ -134,7 +139,8 @@
    "note": "$0.15 is the list price; $0.135 and $0.12 are the 1-year and 3-year savings-plan commitment rates",
    "minutes_per_video_hour": 60.6,
    "time_note": "upload plus Google processing, measured on one 104-minute match; our short clips ran slower per minute",
-   "minutes_per_video_hour_low": null
+   "minutes_per_video_hour_low": null,
+   "quality": 0.366
   },
   {
    "id": "apple_vi",
@@ -150,7 +156,8 @@
    "note": "",
    "minutes_per_video_hour": 60.6,
    "time_note": "the two run side by side; Video Intelligence is the slower path",
-   "minutes_per_video_hour_low": null
+   "minutes_per_video_hour_low": null,
+   "quality": 0.615
   },
   {
    "id": "rekognition_text",
@@ -166,7 +173,8 @@
    "note": "price only: accuracy not measured",
    "minutes_per_video_hour": null,
    "time_note": "not measured",
-   "minutes_per_video_hour_low": null
+   "minutes_per_video_hour_low": null,
+   "quality": null
   },
   {
    "id": "rekognition",
@@ -182,7 +190,8 @@
    "note": "price only: accuracy not measured, and the price file does not say which operation this rate covers",
    "minutes_per_video_hour": null,
    "time_note": "not measured",
-   "minutes_per_video_hour_low": null
+   "minutes_per_video_hour_low": null,
+   "quality": null
   }
  ],
  "not_costed": [
@@ -280,5 +289,32 @@
    "Moving the video into AWS and storing it: not priced",
    "A 24-hour minimum applies to every EC2 Mac host, so a host must stay busy for the per-hour figures to hold"
   ]
- }
+ },
+ "quality_definition": "mean of the share of all boards found and the share of small boards found, on the 156 labelled frames",
+ "two_pass": [
+  {
+   "share_rechecked": 0.05,
+   "hours_rechecked": 5000,
+   "usd_low": 32941,
+   "usd_high": 45608,
+   "vs_gemini_everywhere_low": 147546,
+   "vs_gemini_everywhere_high": 295092
+  },
+  {
+   "share_rechecked": 0.1,
+   "hours_rechecked": 10000,
+   "usd_low": 40319,
+   "usd_high": 60362,
+   "vs_gemini_everywhere_low": 147546,
+   "vs_gemini_everywhere_high": 295092
+  },
+  {
+   "share_rechecked": 0.25,
+   "hours_rechecked": 25000,
+   "usd_low": 62450,
+   "usd_high": 104626,
+   "vs_gemini_everywhere_low": 147546,
+   "vs_gemini_everywhere_high": 295092
+  }
+ ]
 }

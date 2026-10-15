@@ -100,6 +100,10 @@ cmp_rows = "".join(
     f'<td class="muted">{r["verdict"]}</td></tr>'
     for r in CMP)
 
+two_rows = "".join(f'<tr><td class="n">{int(x["share_rechecked"] * 100)}% ({x["hours_rechecked"]:,} hours)</td>'
+                   f'<td class="n q-good">{k(x["usd_low"])} to {k(x["usd_high"])}</td>'
+                   f'<td class="n q-fair">{k(x["vs_gemini_everywhere_low"])} to {k(x["vs_gemini_everywhere_high"])}</td></tr>' for x in m["two_pass"])
+
 html = f"""<!doctype html>
 <html lang="en">
 <head>
@@ -134,6 +138,25 @@ html = f"""<!doctype html>
       <div class="stat"><b class="num">{large_rec:.0%}</b><span>of large boards found, and {pct(O["apple_4w"]["recall_small"])} of small, distant ones</span></div>
     </div>
   </header>
+
+  <section aria-labelledby="c0">
+    <div class="col">
+      <h2 id="c0">Cheap first, expensive where it matters</h2>
+      <p>Each dot is one way of reading the boards. Further right costs more per video hour; higher finds more. Quality here is the average of two measured shares: all boards found, and small boards found.</p>
+    </div>
+    <figure>
+      <div class="legend"><span><i style="background:var(--s2)"></i>Apple Vision on a Mac</span><span><i style="background:var(--s1)"></i>Cloud APIs</span><span class="muted">Lines show each option's price range. AWS Rekognition is left out: its accuracy was not measured.</span></div>
+      <div class="chart" id="scatter"></div>
+      <figcaption>Quality from the 156 hand-labelled frames (176 boards). Cost per video hour, start to finish, at list prices.</figcaption>
+    </figure>
+    <div class="col">
+      <p><strong>A two-pass plan.</strong> Run Apple Vision on every hour, then send only the high-priority hours to Gemini Flash-Lite, which found {pct(O["gemini"]["recall_all"])} of boards against Apple's {pct(O["apple_8w"]["recall_all"])}.</p>
+    </div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Hours re-checked with Gemini</th><th>Cost for 100,000 hours</th><th>Gemini on every hour</th></tr></thead>
+      <tbody>{two_rows}</tbody>
+    </table></div>
+  </section>
 
   <section aria-labelledby="c1">
     <div class="col">

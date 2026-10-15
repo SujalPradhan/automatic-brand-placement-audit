@@ -172,6 +172,40 @@ function costBars(root, d) {
   });
 }
 
+/* Cost page: quality against cost per video hour, log x axis; whiskers span each option's price range */
+function costScatter(root, d) {
+  const pts = d.options.filter((o) => o.quality != null);
+  const W = 760, L = 60, R = 30, T = 20, B = 46, H = 380;
+  const lx = (v) => Math.log10(v), x0 = lx(0.1), x1 = lx(20);
+  const x = (v) => L + ((lx(v) - x0) / (x1 - x0)) * (W - L - R);
+  const y = (q) => T + (1 - (q - 0.3) / 0.5) * (H - T - B);
+  const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, width: W, height: H, role: "img",
+    "aria-label": "Quality against cost per video hour for each measured option, cost on a log scale" }, root);
+  [0.1, 0.3, 1, 3, 10].forEach((v) => {
+    el("line", { x1: x(v), x2: x(v), y1: T, y2: H - B, class: "grid" }, svg);
+    el("text", { x: x(v), y: H - B + 18, "text-anchor": "middle" }, svg).textContent = "$" + v;
+  });
+  [0.3, 0.4, 0.5, 0.6, 0.7, 0.8].forEach((q) => {
+    el("line", { x1: L, x2: W - R, y1: y(q), y2: y(q), class: "grid" }, svg);
+    el("text", { x: L - 8, y: y(q) + 4, "text-anchor": "end" }, svg).textContent = q.toFixed(1);
+  });
+  el("text", { x: (L + W - R) / 2, y: H - 6, "text-anchor": "middle" }, svg).textContent = "Cost per video hour (log scale)";
+  el("text", { x: 14, y: (T + H - B) / 2, transform: `rotate(-90 14 ${(T + H - B) / 2})`, "text-anchor": "middle" }, svg).textContent = "Quality";
+  const short = { apple_fullframe: "Apple, full frame only", apple_8w: "Apple, 8 workers", apple_4w: "Apple, 4 workers",
+    gemini: "Gemini Flash-Lite", cloud_vision: "Cloud Vision text", vi: "Video Intelligence", apple_vi: "Apple + Video Intelligence" };
+  const place = { apple_4w: [0, 18], apple_8w: [0, -14], apple_fullframe: [0, 20], gemini: [0, -14], cloud_vision: [0, 20], vi: [0, 20], apple_vi: [0, -14] };
+  pts.forEach((o) => {
+    const lo = o.usd_per_video_hour_low, hi = o.usd_per_video_hour_high, mid = Math.sqrt(lo * hi), cy = y(o.quality);
+    const apple = o.id.startsWith("apple_") && o.id !== "apple_vi";
+    if (hi > lo) el("line", { x1: x(lo), x2: x(hi), y1: cy, y2: cy, stroke: "var(--ink-3)", "stroke-width": 2 }, svg);
+    el("circle", { cx: x(mid), cy, r: 7, fill: apple ? "var(--s2)" : "var(--s1)", stroke: "var(--surface)", "stroke-width": 2 }, svg);
+    const [dx, dy] = place[o.id] || [0, -14];
+    el("text", { x: x(mid) + dx, y: cy + dy, "text-anchor": "middle", class: "lbl small" }, svg).textContent = short[o.id] || o.name;
+    hover(el("circle", { cx: x(mid), cy, r: 16, fill: "transparent" }, svg),
+      `<b>${o.name}</b><br>$${lo.toFixed(2)}${hi > lo ? "–$" + hi.toFixed(2) : ""} per video hour<br>quality ${o.quality} (all boards ${Math.round(o.recall_all * 100)}%, small ${Math.round(o.recall_small * 100)}%)`);
+  });
+}
+
 const page = (document.querySelector("[data-page]") || {}).dataset?.page;
 const fail = (err) => document.querySelectorAll(".chart").forEach((c) => { c.textContent = "Chart data could not be loaded: " + err.message; });
 if (page === "landing") {
@@ -180,7 +214,7 @@ if (page === "landing") {
     accuracyTable(document.getElementById("accuracy"), d.scores);
   }).catch(fail);
 } else if (page === "cost") {
-  fetch("cost_model.json").then((r) => r.json()).then((d) => costBars(document.getElementById("costbars"), d)).catch(fail);
+  fetch("cost_model.json").then((r) => r.json()).then((d) => { costScatter(document.getElementById("scatter"), d); costBars(document.getElementById("costbars"), d); }).catch(fail);
 } else if (page) {
   fetch(`game-${page}.json`).then((r) => r.json()).then((d) => {
     const brands = Object.values(d.brands);

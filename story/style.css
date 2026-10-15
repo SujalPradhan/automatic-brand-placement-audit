@@ -111,3 +111,16 @@ td.q-good { background: var(--q-good); }
 td.q-fair { background: var(--q-fair); }
 td.q-weak { background: var(--q-weak); }
 .legend i.sq { border-radius: 2px; border: 1px solid var(--rule); }
+
+/* previous / next at the foot of every page */
+.pager { display: flex; justify-content: space-between; gap: 16px; border-top: 1px solid var(--rule); padding-top: 18px; font: 600 0.95rem/1.3 var(--f-ui); }
+.pager a { display: grid; gap: 2px; text-decoration: none; color: var(--ink); max-width: 48%; }
+.pager a span { font: 600 0.72rem var(--f-ui); text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); }
+.pager a.next { text-align: right; margin-left: auto; }
+.pager a:hover { color: var(--accent); }
+/* YouTube clips: a link card in the artifact, an embedded player on the Pages build */
+a.yt { white-space: nowrap; }
+.clip-card { display: grid; place-items: center; aspect-ratio: 16 / 9; max-width: 100%; background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; text-decoration: none; color: var(--ink); font: 600 1rem var(--f-ui); }
+.clip-card:hover { border-color: var(--accent); color: var(--accent); }
+.yt-embed { aspect-ratio: 16 / 9; max-width: 100%; }
+.yt-embed iframe { width: 100%; height: 100%; border: 0; border-radius: 4px; display: block; }

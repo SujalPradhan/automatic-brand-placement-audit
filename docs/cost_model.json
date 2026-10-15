@@ -1,0 +1,320 @@
+{
+ "scale": {
+  "hours": 100000,
+  "frames": 360000000,
+  "minutes": 6000000,
+  "sampling": "1 frame per second"
+ },
+ "headline": {
+  "apple_usd": 25564,
+  "apple_usd_high": 30853,
+  "per_video_hour": 0.26,
+  "per_video_hour_high": 0.31,
+  "per_100_min_match": 0.43,
+  "per_100_min_match_high": 0.52,
+  "minutes_per_hour": [
+   12.5,
+   15.1
+  ],
+  "minutes_per_hour_4w": [
+   20.7,
+   23.8
+  ],
+  "cheapest_cloud_usd": 103450,
+  "vi_usd_low": 719880,
+  "vi_usd_high": 899850
+ },
+ "throughput": {
+  "apple_4w_fps": 2.68,
+  "apple_8w_fps": 4.35,
+  "apple_fullframe_1w_fps": 7.19,
+  "host_usd_per_hour": 1.23,
+  "gemini_tokens_per_frame": [
+   1249,
+   178
+  ]
+ },
+ "bands": {
+  "good_max_usd": 50000,
+  "fair_max_usd": 300000,
+  "applies_to": "the high end of each price range"
+ },
+ "options": [
+  {
+   "id": "apple_4w",
+   "name": "Apple Vision OCR on EC2 Mac, 4 workers, start to finish",
+   "usd_low": 42374,
+   "usd_high": 48771,
+   "usd_per_video_hour_low": 0.42,
+   "usd_per_video_hour_high": 0.49,
+   "recall_all": 0.693,
+   "recall_small": 0.283,
+   "basis": "20.7 to 23.8 min per video hour x $1.23/h; frame extraction included",
+   "accuracy_measured": true,
+   "note": "low: timed one-hour run on an idle Mac; high: full-match speed on a shared Mac",
+   "minutes_per_video_hour": 23.8,
+   "time_note": "one Mac host, 4 workers, measured on two full matches",
+   "minutes_per_video_hour_low": 20.7,
+   "quality": 0.488
+  },
+  {
+   "id": "apple_8w",
+   "name": "Apple Vision OCR on EC2 Mac, 8 workers, start to finish",
+   "usd_low": 25564,
+   "usd_high": 30853,
+   "usd_per_video_hour_low": 0.26,
+   "usd_per_video_hour_high": 0.31,
+   "recall_all": 0.693,
+   "recall_small": 0.283,
+   "basis": "12.5 to 15.1 min per video hour x $1.23/h; frame extraction included",
+   "accuracy_measured": true,
+   "note": "three timed runs on an idle Mac (full-match hour, two highlight clips); the EC2 host's own speed is not measured",
+   "minutes_per_video_hour": 15.1,
+   "time_note": "one Mac host, 8 workers, measured on 300 frames",
+   "minutes_per_video_hour_low": 12.5,
+   "quality": 0.488
+  },
+  {
+   "id": "apple_fullframe",
+   "name": "Apple Vision, full frame only (1 worker)",
+   "usd_low": 18952,
+   "usd_high": 19985,
+   "usd_per_video_hour_low": 0.19,
+   "usd_per_video_hour_high": 0.2,
+   "recall_all": 0.614,
+   "recall_small": 0.217,
+   "basis": "9.2 to 9.7 min per video hour x $1.23/h; frame extraction included",
+   "accuracy_measured": true,
+   "note": "single process; more workers would be cheaper, not measured",
+   "minutes_per_video_hour": 9.7,
+   "time_note": "one process, measured per frame",
+   "minutes_per_video_hour_low": 9.2,
+   "quality": 0.415
+  },
+  {
+   "id": "gemini",
+   "name": "Gemini Flash-Lite reading every frame",
+   "usd_low": 147546,
+   "usd_high": 295092,
+   "usd_per_video_hour_low": 1.48,
+   "usd_per_video_hour_high": 2.95,
+   "recall_all": 0.852,
+   "recall_small": 0.609,
+   "basis": "1249 in + 178 out tokens per frame (measured); $0.00041 (batch) to $0.00082 (standard) per frame",
+   "accuracy_measured": true,
+   "note": "tokens were measured on gemini-3.1-flash-lite; priced at the confirmed 3.5 Flash-Lite rates",
+   "minutes_per_video_hour": 155.8,
+   "time_note": "one request at a time at the measured 2.6 s per frame; parallel requests would cut this, not measured",
+   "minutes_per_video_hour_low": null,
+   "quality": 0.73
+  },
+  {
+   "id": "cloud_vision",
+   "name": "Google Cloud Vision text detection per frame",
+   "usd_low": 220500,
+   "usd_high": 270000,
+   "usd_per_video_hour_low": 2.2,
+   "usd_per_video_hour_high": 2.7,
+   "recall_all": 0.756,
+   "recall_small": 0.457,
+   "basis": "one call per frame; low = all in one month, high = spread over 12 months",
+   "accuracy_measured": true,
+   "note": "",
+   "minutes_per_video_hour": 50.0,
+   "time_note": "one request at a time at the measured 0.83 s per frame; parallel requests would cut this, not measured",
+   "minutes_per_video_hour_low": null,
+   "quality": 0.607
+  },
+  {
+   "id": "vi",
+   "name": "Google Video Intelligence logo detection",
+   "usd_low": 719880,
+   "usd_high": 899850,
+   "usd_per_video_hour_low": 7.2,
+   "usd_per_video_hour_high": 9.0,
+   "recall_all": 0.44886363636363635,
+   "recall_small": 0.2826086956521739,
+   "basis": "6,000,000 minutes x $0.12-$0.15",
+   "accuracy_measured": true,
+   "note": "$0.15 is the list price; $0.135 and $0.12 are the 1-year and 3-year savings-plan commitment rates",
+   "minutes_per_video_hour": 60.6,
+   "time_note": "upload plus Google processing, measured on one 104-minute match; our short clips ran slower per minute",
+   "minutes_per_video_hour_low": null,
+   "quality": 0.366
+  },
+  {
+   "id": "apple_vi",
+   "name": "Apple Vision + Video Intelligence (the v3 pipeline)",
+   "usd_low": 745444,
+   "usd_high": 930703,
+   "usd_per_video_hour_low": 7.45,
+   "usd_per_video_hour_high": 9.31,
+   "recall_all": 0.7727272727272727,
+   "recall_small": 0.45652173913043476,
+   "basis": "Apple (4 workers) + Video Intelligence",
+   "accuracy_measured": true,
+   "note": "",
+   "minutes_per_video_hour": 60.6,
+   "time_note": "the two run side by side; Video Intelligence is the slower path",
+   "minutes_per_video_hour_low": null,
+   "quality": 0.615
+  },
+  {
+   "id": "rekognition_text",
+   "name": "AWS Rekognition text detection per frame",
+   "usd_low": 103450,
+   "usd_high": 230400,
+   "usd_per_video_hour_low": 1.03,
+   "usd_per_video_hour_high": 2.3,
+   "recall_all": null,
+   "recall_small": null,
+   "basis": "per-image tiers from the AWS price file; low = all in one month, high = spread over 12 months",
+   "accuracy_measured": false,
+   "note": "price only: accuracy not measured",
+   "minutes_per_video_hour": null,
+   "time_note": "not measured",
+   "minutes_per_video_hour_low": null,
+   "quality": null
+  },
+  {
+   "id": "rekognition",
+   "name": "AWS Rekognition Video, stored video (text detection is on this rate)",
+   "usd_low": 600000,
+   "usd_high": 600000,
+   "usd_per_video_hour_low": 6.0,
+   "usd_per_video_hour_high": 6.0,
+   "recall_all": null,
+   "recall_small": null,
+   "basis": "6,000,000 minutes x $0.10",
+   "accuracy_measured": false,
+   "note": "price only: accuracy not measured, and the price file does not say which operation this rate covers",
+   "minutes_per_video_hour": null,
+   "time_note": "not measured",
+   "minutes_per_video_hour_low": null,
+   "quality": null
+  }
+ ],
+ "not_costed": [
+  {
+   "name": "PaddleOCR",
+   "why": "accurate (recall 0.73) but 25.6 s/frame on one CPU process; per-instance parallelism not measured",
+   "recall_all": 0.733
+  },
+  {
+   "name": "Tesseract",
+   "why": "recall 0.18 and precision 0.41 on our frames",
+   "recall_all": 0.176
+  }
+ ],
+ "speed": [
+  {
+   "hosts": 1,
+   "apple_4w_days": 1652.1,
+   "apple_8w_days": 1045.2
+  },
+  {
+   "hosts": 10,
+   "apple_4w_days": 165.2,
+   "apple_8w_days": 104.5
+  },
+  {
+   "hosts": 100,
+   "apple_4w_days": 16.5,
+   "apple_8w_days": 10.5
+  },
+  {
+   "hosts": 1000,
+   "apple_4w_days": 1.7,
+   "apple_8w_days": 1.0
+  }
+ ],
+ "assumptions": [
+  "1 frame per second, as measured. Sampling every 2 s would halve every figure here and cost recall on short appearances (not measured).",
+  "Apple options assume an EC2 Mac M4 host matches the speed of the machine we measured on. That is not tested.",
+  "Hosts are on-demand at $1.23 per host-hour with a 24-hour minimum, so small batches pay for a full day per host.",
+  "Recall is pooled over 156 hand-labelled frames (176 boards) from three highlight edits. Full matches have more wide shots.",
+  "Cloud-API figures are list prices with no volume discount or committed-use deal."
+ ],
+ "pipeline": {
+  "stages": [
+   {
+    "stage": "Break the video into frames (ffmpeg, 1 per second)",
+    "min_low": 0.898,
+    "min_high": 1.55,
+    "usd_low": 0.018,
+    "usd_high": 0.032,
+    "measured": "yes, three timed runs"
+   },
+   {
+    "stage": "Read every frame: full frame, 6 zoomed tiles, Chinese pass (Apple Vision, 8 workers)",
+    "min_low": 11.53,
+    "min_high": 13.5,
+    "usd_low": 0.236,
+    "usd_high": 0.277,
+    "measured": "yes, three timed runs"
+   },
+   {
+    "stage": "Match text to brands and total the seconds",
+    "min_low": 0.0,
+    "min_high": 0.0,
+    "usd_low": 0.0,
+    "usd_high": 0.0,
+    "measured": "yes, under 1 second"
+   }
+  ],
+  "total_min": [
+   12.5,
+   15.1
+  ],
+  "total_usd": [
+   0.256,
+   0.309
+  ],
+  "runs": {
+   "full-match hour, 1080p30": 14.2,
+   "2022 final highlights, 1080p50": 15.1,
+   "2026 group highlights, 720p60": 12.5
+  },
+  "optional": [
+   {
+    "stage": "Google Video Intelligence logo recognition (optional, runs in Google's cloud)",
+    "min": 61.0,
+    "usd_low": 7.199999999999999,
+    "usd_high": 9.0,
+    "note": "about 6 min upload plus about 55 min processing, measured on one 104-minute match"
+   }
+  ],
+  "not_included": [
+   "Human review of detections (precision audit, recall labels): not timed, not costed",
+   "Moving the video into AWS and storing it: not priced",
+   "A 24-hour minimum applies to every EC2 Mac host, so a host must stay busy for the per-hour figures to hold"
+  ]
+ },
+ "quality_definition": "mean of the share of all boards found and the share of small boards found, on the 156 labelled frames",
+ "two_pass": [
+  {
+   "share_rechecked": 0.05,
+   "hours_rechecked": 5000,
+   "usd_low": 32941,
+   "usd_high": 45608,
+   "vs_gemini_everywhere_low": 147546,
+   "vs_gemini_everywhere_high": 295092
+  },
+  {
+   "share_rechecked": 0.1,
+   "hours_rechecked": 10000,
+   "usd_low": 40319,
+   "usd_high": 60362,
+   "vs_gemini_everywhere_low": 147546,
+   "vs_gemini_everywhere_high": 295092
+  },
+  {
+   "share_rechecked": 0.25,
+   "hours_rechecked": 25000,
+   "usd_low": 62450,
+   "usd_high": 104626,
+   "vs_gemini_everywhere_low": 147546,
+   "vs_gemini_everywhere_high": 295092
+  }
+ ]
+}

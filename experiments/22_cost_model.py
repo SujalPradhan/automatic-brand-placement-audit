@@ -236,6 +236,22 @@ out["pipeline"] = {"stages": [{k: (round(v, 3) if isinstance(v, float) else v) f
                                     "Moving the video into AWS and storing it: not priced",
                                     "A 24-hour minimum applies to every EC2 Mac host, so a host must stay busy for the per-hour figures to hold"]}
 
+# ---- quality composite for the scatter: mean of all-board recall and small-board recall (measured options only) ------
+for o in opts:
+    ra, rs = o["recall_all"], o["recall_small"]
+    o["quality"] = None if ra is None or rs is None else round((ra + rs) / 2, 3)
+out["quality_definition"] = "mean of the share of all boards found and the share of small boards found, on the 156 labelled frames"
+
+# ---- two-pass plan: Apple Vision (8 workers) on every hour, then Gemini Flash-Lite on a share of high-priority hours ----
+g = by_id = {o["id"]: o for o in opts}
+two = []
+for share in (0.05, 0.10, 0.25):
+    lo = g["apple_8w"]["usd_low"] + share * g["gemini"]["usd_low"]
+    hi = g["apple_8w"]["usd_high"] + share * g["gemini"]["usd_high"]
+    two.append({"share_rechecked": share, "hours_rechecked": int(HOURS * share), "usd_low": round(lo), "usd_high": round(hi),
+                "vs_gemini_everywhere_low": round(g["gemini"]["usd_low"]), "vs_gemini_everywhere_high": round(g["gemini"]["usd_high"])})
+out["two_pass"] = two
+
 # ---- arithmetic checks ----------------------------------------------------------------------------------------------
 assert abs(out["headline"]["apple_usd"] - min(runs8.values()) / 3600 * HOST * HOURS) < 1
 assert abs(vi_hi - 5_999_000 * 0.15) < 1

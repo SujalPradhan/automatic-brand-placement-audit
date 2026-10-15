@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Who Owned the Goals?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<link rel="stylesheet" href="style.css">
+<style>html, body { margin: 0; } img { max-width: 100%; } [hidden] { display: none !important; }</style>
+</head>
+<body>
+<main class="wrap" data-page="landing">
+
+  <nav class="top" aria-label="Pages">
+    <a href="index.html" aria-current="page">Overview &amp; accuracy</a>
+    <a href="game-2022.html">2022 final</a>
+    <a href="game-2026.html">2026: Brazil v Morocco</a>
+    <a href="game-2026-final.html">2026 final</a>
+    <a href="game-full-bra.html">2022: Brazil v Korea</a>
+    <a href="game-full-por.html">2018: Portugal v Spain</a>
+    <a href="cost.html">Cost at scale</a>
+  </nav>
+
+  <header class="hero">
+    <p class="eyebrow">Brand placement audit · World Cup highlights · internal</p>
+    <h1>Who owned the goals?</h1>
+    <p class="dek">You'd expect the brands paying FIFA the most to own the moments fans replay. In both World Cup finals we measured, they mostly did: FIFA's top-tier partners held 51% of the seconds around the goals in 2022 and 60% in 2026. The exception was a 2026 group game. In Brazil v Morocco, regional supporters, FIFA's lowest tier, held 30% of screen time, and three of them took 72% of goal-moment seconds.</p>
+    <div class="stats">
+      <div class="stat"><b class="num">60%</b><span>of the 2026 final's goal-moment seconds went to top-tier partners</span></div>
+      <div class="stat"><b class="num">72%</b><span>of Brazil v Morocco's goal-moment seconds went to regional supporters</span></div>
+      <div class="stat"><b class="num">≈ $0</b><span>to measure all three games, on a laptop and inside Google's free tier</span></div>
+    </div>
+  </header>
+
+  <section aria-labelledby="tiers-h">
+    <h2 id="tiers-h" class="col">The finals went to the top tier. The group game didn't.</h2>
+    <figure>
+      <div class="fig-title">Top-tier partners' share of goal moments: 51% in the 2022 final, 28% in the group game, 60% in the 2026 final</div>
+      <div class="legend"><span><i style="background:var(--t1)"></i>FIFA Partner (top tier)</span><span><i style="background:var(--t2)"></i>World Cup Sponsor</span><span><i style="background:var(--t3)"></i>Regional supporter</span></div>
+      <div class="chart" id="tiers"></div>
+      <figcaption>Share of sponsor brand-seconds (one frame sampled per second, perimeter boards only). Goal moments run from the build-up to the end of the replays. 2022 final: 638 brand-seconds, 194 of them in goal windows. 2026 group game: 491 and 103. 2026 final: 117 and 10.</figcaption>
+    </figure>
+    <div class="col">
+      <p>With a third game, a final can be compared with a final. That is the fairer comparison: same stage, and both edits built around the decisive goals. On it, the top tier held on to the goal moments. Our first version of this page compared the 2022 final with the Brazil v Morocco group game and read the drop as a shift. The 2026 final doesn't support that. So far the group game is the outlier.</p>
+      <p>In every game, the cause is the same: which boards were behind the goal when the ball went in. Both Messi goals in 2022 came in front of Budweiser and Crypto.com, both World Cup Sponsors. In Brazil v Morocco, Vinícius's equaliser was framed for 80 seconds of build-up, celebration and replays by Kraken (a crypto exchange), Betano (a betting brand) and Inter Rapidísimo (a Colombian courier). In the 2026 final, the LED boards behind the goal switched from Hisense to Aramco about four seconds before Spain scored. Each game page shows this goal by goal.</p>
+      <p>Chinese brands' share of screen time was 24% in the 2022 final (Wanda, Vivo, Hisense, Mengniu), 12% in the group game (Lenovo, Hisense, Mengniu) and 19% in the 2026 final (Lenovo, Hisense). Both 2026 games are below 2022, in line with the drop in Chinese official sponsors from seven in 2018 to three in 2026 <a href="https://www.caixinglobal.com/2026-07-07/in-depth-chinese-brands-tear-up-playbook-for-world-cup-sponsorship-102461691.html" target="_blank" rel="noopener">(Caixin)</a>.</p>
+      <p class="caveat">This is three matches, with one highlight edit each. The 2026 final is a 2-minute edit with one goal, and its goal window holds only 10 detected brand-seconds. Which board is lit when a goal goes in is partly luck. Treat these numbers as what to measure across a tournament, not as a trend.</p>
+    </div>
+    <div class="cards">
+      <a class="card" href="game-2022.html"><em>2022 final · Argentina v France</em><b>The banned beer brand got the most goal time</b><span>Budweiser: 11% of screen time, 19% of goal-moment seconds. The most of any brand.</span></a>
+      <a class="card" href="game-2026.html"><em>2026 group stage · Brazil v Morocco</em><b>Three regional supporters got Brazil's goal</b><span>Kraken, Betano and Inter Rapidísimo: 16% of screen time, 72% of goal moments.</span></a>
+      <a class="card" href="game-2026-final.html"><em>2026 final · Spain v Argentina</em><b>The boards switched to Aramco four seconds before the goal</b><span>Aramco: 12% of screen time, 60% of goal-moment seconds. Hisense had the build-up.</span></a>
+      <a class="card" href="game-full-bra.html"><em>2022 round of 16 · Brazil v South Korea · full match</em><b>Every Brazil goal had a different sponsor behind it</b><span>Five goals, five sets of boards. Two Qatari brands held 1.3% of screen time and 21% of goal moments, all in one stoppage.</span></a>
+      <a class="card" href="game-full-por.html"><em>2018 group B · Portugal v Spain · full match</em><b>The most-seen board got one second of goal time</b><span>Qatar Airways had the most screen time of any brand and 1 second inside a goal window. Six goals, six different leaders.</span></a>
+      <a class="card" href="cost.html"><em>Cost at scale · 100,000 hours</em><b>$0.26–$0.31 to audit an hour of video</b><span>Apple's on-device text reader on a rented Mac, 12 to 15 minutes per hour, start to finish. Cloud APIs: $1.48 to $9.00. At 100,000 hours: $26k to $31k.</span></a>
+    </div>
+  </section>
+
+  <section aria-labelledby="acc-h">
+    <div class="col">
+      <p class="eyebrow">How well can cheap tools see sponsors?</p>
+      <h2 id="acc-h">Two free methods, checked by hand</h2>
+      <p>We sample one frame per second. Each frame goes through two methods:</p>
+      <ul class="plain">
+        <li>On-device OCR that reads board text: the full frame, zoomed tiles for distant boards, and a Chinese-language pass.</li>
+        <li>Google Video Intelligence's logo recognition, keeping only names on the sponsor list.</li>
+      </ul>
+      <p>A brand counts as present in a second if either method finds it.</p>
+    </div>
+    <figure>
+      <div class="legend"><span><i class="sq" style="background:var(--q-good)"></i>Good: recall ≥ 0.80, precision ≥ 0.95</span><span><i class="sq" style="background:var(--q-fair)"></i>Fair: recall 0.50–0.79, precision 0.85–0.94</span><span><i class="sq" style="background:var(--q-weak)"></i>Weak: recall &lt; 0.50, precision &lt; 0.85</span></div>
+      <div class="table-wrap" id="accuracy"></div>
+      <figcaption>
+        <strong>Recall:</strong> the share of sponsor boards a person could identify that the method found. It comes from hand-labelling one frame every 10 seconds in the two longer videos and every 5 seconds in the 2-minute final: 72 frames with 76 boards in the 2022 final, 60 frames with 66 boards in the group game, and 24 frames with 34 boards in the 2026 final. The 95% range is in brackets.<br>
+        <strong>Precision:</strong> the share of detected brand-seconds that were real, from a by-eye review of every detected appearance. The false ones are removed before any number on these pages.
+      </figcaption>
+    </figure>
+    <div class="col">
+      <p>The review caught errors a raw run would have published. Examples:</p>
+      <ul class="plain">
+        <li>"UNITED STATES OF AMERICA" read as Bank of America.</li>
+        <li>Aramco's "Global Energy Partner" read as Globant.</li>
+        <li>"AIRWAYS" read as Lay's.</li>
+        <li>The player name "UPAMECANO" read as Betano.</li>
+        <li>"Powered by" on a Lenovo AI graphic read as Powerade.</li>
+      </ul>
+      <p>It also caught one of ours. In the first version of these pages, ADI Predictstreet's boards were counted as Adidas. They are now a separate brand, and the earlier pages' numbers are kept in the benchmark log.</p>
+      <p>The biggest remaining gap is small, distant boards. We catch about 4 in 10 in the 2022 final, 6 in 10 in the group game, and 1 of 8 in the 2026 final.</p>
+    </div>
+    <div class="frames">
+      <figure data-yt="agrGb25mJzs" data-t="1"><div class="yt-embed"><iframe src="https://www.youtube-nocookie.com/embed/agrGb25mJzs?start=1&rel=0" title="Match footage at 1 seconds" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><figcaption>0:01, 2022. Found: Qatar Airways, QatarEnergy, McDonald's and Vivo. Still missed: the tiny Visa, Coca-Cola and Adidas boards to the left. <a class="yt" href="https://www.youtube.com/watch?v=agrGb25mJzs&t=1s" target="_blank" rel="noopener">Watch on YouTube at 0:01 ↗</a></figcaption></figure>
+      <figure data-yt="agrGb25mJzs" data-t="516"><div class="yt-embed"><iframe src="https://www.youtube-nocookie.com/embed/agrGb25mJzs?start=516&rel=0" title="Match footage at 516 seconds" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><figcaption>8:36, 2022. BYJU'S is real: a large board for 10 seconds, between QatarEnergy and Hisense. Nine sponsors in one frame. <a class="yt" href="https://www.youtube.com/watch?v=agrGb25mJzs&t=516s" target="_blank" rel="noopener">Watch on YouTube at 8:36 ↗</a></figcaption></figure>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Per 10 minutes of video</th><th>Time</th><th>Cost</th><th>Verdict</th></tr></thead>
+        <tbody>
+          <tr><td>On-device OCR (Apple Vision, three passes)</td><td class="n">≈10–13 min on an M4 laptop</td><td class="n">$0</td><td>Keep: best recall, reads any board text</td></tr>
+          <tr><td>Google Video Intelligence logo recognition</td><td class="n">≈15–20 min, runs in the cloud</td><td class="n">$0 to 1,000 min/month, then $1.50</td><td>Keep, filtered to the sponsor list: adds script and symbol logos</td></tr>
+          <tr><td>Hand review of detections</td><td class="n">≈20 min</td><td class="n">—</td><td>Keep: it is what makes the numbers trustworthy</td></tr>
+          <tr><td>Google Cloud Vision logo detection (single frames)</td><td class="n">—</td><td class="n">$1.50 / 1,000 frames</td><td>Dropped: found 0.6% of 2,469 labelled logos in a soccer benchmark</td></tr>
+          <tr><td>OWLv2 open-vocabulary detector</td><td class="n">≈0.75 s / frame</td><td class="n">$0</td><td>Dropped: finds logo-shaped areas (recall 0.47, precision 0.26) but cannot name the brand</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="col muted" style="font-size:.9rem">Scope: perimeter and LED boards only. Kit and jersey logos (Nike, Puma, Adidas on shirts) and on-screen graphics (such as "Powered by Lenovo AI") are excluded from every figure and kept in a separate file, as are drinks coolers.</p>
+  </section>
+
+  <footer>
+    <p>Footage: FIFA highlights of the 2022 final (11:56, 1080p), the 2026 group game Brazil v Morocco (10:00, 720p) and the 2026 final Spain v Argentina (1:57, 1080p). Used for internal analysis only.</p>
+    <p>Sponsor tiers: FIFA media releases and coverage in <a href="https://www.fifa.com/media-releases/nubank-official-regional-supporter-of-fifa-world-cup-2022" target="_blank" rel="noopener">FIFA</a>, <a href="https://sponsorship.sportbusiness.com/news/inter-rapidisimo-signs-up-as-qatar-2022-regional-supporter/" target="_blank" rel="noopener">SportBusiness</a>, <a href="https://www.sportcal.com/news/fifa-adds-valvoline-as-regional-world-cup-sponsor/" target="_blank" rel="noopener">Sportcal</a> and <a href="https://insidersport.com/2024/09/17/fifa-world-cup-2026-partnerships/" target="_blank" rel="noopener">Insider Sport</a>. Savvy Games Group's tier is inferred from its owner PIF's supporter deal; the 2026 final page lists the sources and inferences for its new brands. Every number regenerates from <code>experiments/*.py</code>; the audit files are in <code>evidence/audit/</code>.</p>
+    <p>Earlier benchmark runs, including the two-game version of this page, are recorded in <code>BENCHMARKS.md</code>.</p>
+  </footer>
+  <nav class="pager" aria-label="Previous and next page"><span></span><a class="next" href="game-2022.html"><span>Next</span>2022 final</a></nav>
+</main>
+<script src="script.js"></script>
+</body>
+</html>
