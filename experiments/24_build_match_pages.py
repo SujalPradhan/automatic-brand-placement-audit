@@ -13,9 +13,9 @@ EV, ST = ROOT / "evidence", ROOT / "story"
 mmss = lambda s: f"{s // 60}:{s % 60:02d}"
 band = lambda v, g, f: "good" if v >= g else "fair" if v >= f else "weak"
 
-PAGES = [("index.html", "Overview &amp; accuracy"), ("game-2022.html", "2022 final"), ("game-2026.html", "2026: Brazil v Morocco"),
-         ("game-2026-final.html", "2026 final"), ("game-full-bra.html", "2022: Brazil v Korea"),
-         ("game-full-por.html", "2018: Portugal v Spain"), ("cost.html", "Cost at scale")]
+PAGES = [("index.html", "Overview"), ("game-2022.html", "2022 Final"), ("game-2026.html", "2026 Bra/Mor"),
+         ("game-2026-final.html", "2026 Final"), ("game-full-bra.html", "2022 Bra/Kor"),
+         ("game-full-por.html", "2018 Por/Esp"), ("cost.html", "Cost")]
 
 
 def nav(cur):

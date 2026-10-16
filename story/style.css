@@ -58,8 +58,10 @@ a { color: var(--accent); }
 .num { font-family: var(--f-data); font-variant-numeric: tabular-nums; }
 .muted { color: var(--ink-3); }
 
-nav.top { display: flex; flex-wrap: wrap; gap: 6px; padding: 8px; border-radius: 10px; background: var(--nav-bg); font: 600 1rem/1.3 var(--f-ui); }
-nav.top a { text-decoration: none; color: var(--nav-ink); padding: 7px 12px; border-radius: 7px; }
+nav.top { display: flex; flex-wrap: nowrap; gap: 4px; padding: 6px; border-radius: 12px; background: var(--nav-bg); font: 600 1rem/1.3 var(--f-ui);
+  overflow-x: auto; scrollbar-width: none; box-shadow: 0 2px 10px color-mix(in srgb, var(--nav-bg) 30%, transparent); }
+nav.top::-webkit-scrollbar { display: none; }
+nav.top a { flex: 1 0 auto; text-align: center; white-space: nowrap; text-decoration: none; color: var(--nav-ink); padding: 8px 14px; border-radius: 8px; transition: background 0.15s; }
 nav.top a:hover { background: color-mix(in srgb, var(--nav-ink) 16%, transparent); }
 nav.top a[aria-current="page"] { background: var(--nav-ink); color: var(--nav-bg); }
 

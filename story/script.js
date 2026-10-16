@@ -338,6 +338,9 @@ function costGrid(root, d) {
   });
 }
 
+// one-line nav: on narrow screens it scrolls sideways, so bring the current page into view
+const navCur = document.querySelector("nav.top a[aria-current]");
+if (navCur) navCur.parentElement.scrollLeft = navCur.offsetLeft - (navCur.parentElement.clientWidth - navCur.offsetWidth) / 2;
 const page = (document.querySelector("[data-page]") || {}).dataset?.page;
 const fail = (err) => document.querySelectorAll(".chart").forEach((c) => { c.textContent = "Chart data could not be loaded: " + err.message; });
 if (page === "landing") {
