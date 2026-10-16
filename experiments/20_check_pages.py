@@ -80,7 +80,6 @@ CLAIMS = [
     ("game-2026.html", f"Kraken, a crypto exchange ({mom(g26, 1, 'Kraken')} s), Betano, a betting brand ({mom(g26, 1, 'Betano')} s), and Inter Rapidísimo, a Colombian courier ({mom(g26, 1, 'Inter Rapidísimo')} s). Visa got {mom(g26, 1, 'Visa')}."),
     ("game-2026.html", f"were on screen for {sum(b(g26, k)['visible_s'] for k in ('Aramco', 'Lenovo', 'Adidas'))} seconds between them"),
     ("game-2026.html", f"Saibari {mmss(g26['moments'][0]['start'])}–{mmss(g26['moments'][0]['end'])}, Vinícius {mmss(g26['moments'][1]['start'])}–{mmss(g26['moments'][1]['end'])}"),
-    ("game-2026.html", f"{b(g26, 'Lenovo')['visible_s']} seconds on screen, none during a goal"),
     ("game-2026.html", f"<p>{words(len(g26['brands']))} sponsors appear in ten minutes"),
     ("game-2026.html", f"Michelob Ultra, for {b(g26, 'MichelobUltra')['visible_s']} seconds"),
     ("game-2026.html", f"held {pct(g26['china']['share_visible_pct'])} of screen time, half their 2022 share"),

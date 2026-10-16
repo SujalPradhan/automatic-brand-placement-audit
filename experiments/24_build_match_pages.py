@@ -6,7 +6,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from common import BRAND_INFO
 from presence import presence
-from youtube import PLAYER, YT, clip
+from youtube import PLAYER, YT
 
 ROOT = Path(__file__).resolve().parents[1]
 EV, ST = ROOT / "evidence", ROOT / "story"
@@ -83,7 +83,7 @@ HEAD = """<!doctype html>
 """
 
 
-def page(cur, tag, title, eyebrow, h1, dek, beats, bench_rows, bench_note, caveat, m, grows, clips=""):
+def page(cur, tag, title, eyebrow, h1, dek, beats, bench_rows, bench_note, caveat, m, grows):
     cwrap = lambda s: f'<div class="col">{s}</div>'
     return HEAD.format(title=title) + f"""<main class="wrap" data-page="{tag}" data-yt="{YT[tag]}">
 
@@ -101,7 +101,6 @@ def page(cur, tag, title, eyebrow, h1, dek, beats, bench_rows, bench_note, cavea
       {beats}
     </div>
     <div class="table-wrap">{goal_table(grows)}</div>
-    <div class="frames">{clips}</div>
     <figure>
       <div class="legend"><span><i style="background:var(--s1)"></i>Share of all sponsor screen time</span><span><i style="background:var(--s2)"></i>Share of goal-moment seconds</span></div>
       <div class="chart" id="dumbbell"></div>
@@ -178,9 +177,7 @@ html = page("game-full-bra.html", "full_bra", "Brazil v Korea 2022",
     bench_rows,
     f"""<p>We hand-labelled 30 frames of live play (26 boards) and checked a random 150 detections by eye. Both methods ran on the whole match. Apple Vision took about 22 minutes per hour of video on four workers; Video Intelligence took about 95 minutes of Google processing for the 104-minute match.</p>""",
     f"One match, five goals, and a goal-moment share built from {tot_km} brand-seconds. The 26-board recall sample gives wide ranges (Apple Vision 0.77, 95% range 0.58 to 0.89). The 150-detection precision sample was checked before a few brand terms were added to the list, so some brands may be slightly off. Brands in grey are ones we did not place in a sponsor tier, which includes real host-country boards such as Ooredoo and QNB and some that may be misreads; none of the claims above rest on a misread. Replays sit inside live play and are counted.",
-    m, g,
-    clips=clip("full_bra", 887, "The stoppage before Brazil's second goal: Ooredoo and QNB boards along the goal line for about 20 seconds.")
-    + clip("full_bra", 5107, "Korea's goal: Hyundai boards in view for almost the whole window."))
+    m, g)
 (ST / "game-full-bra.html").write_text(html)
 
 # ---------------- Portugal v Spain (2018 group B) ----------------
@@ -204,9 +201,7 @@ html2 = page("game-full-por.html", "full_por", "Portugal v Spain 2018",
     bench_rows2,
     f"""<p>This match was read by Apple Vision only. We hand-labelled 30 frames of live play (29 boards) and checked a random 150 detections by eye. Apple Vision took about 22 minutes per hour of video on four workers.</p>""",
     f"One match, six goals, and {sum(v['key_moment_s'] for v in B2.values())} goal-moment brand-seconds, so each brand's goal share rests on a handful of seconds. Sponsor tiers for 2018 are inferred from the 2022 listing, not taken from a 2018 FIFA list. Only one small board was in the 29 labelled, so small-board recall is not measured here. Brands in grey are ones we did not place in a sponsor tier.",
-    m2, g2,
-    clips=clip("full_por", 366, f"Portugal's first goal: {g2[0]['top'][0][0]} led the window with {g2[0]['top'][0][1]} brand-seconds.")
-    + clip("full_por", 5490, f"The 3–3 equaliser: {g2[-1]['top'][0][0]} and {g2[-1]['top'][1][0]} shared the window."))
+    m2, g2)
 (ST / "game-full-por.html").write_text(html2)
 
 # ---------------- nav and previous / next on every page ----------------
