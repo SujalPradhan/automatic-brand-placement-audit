@@ -133,8 +133,11 @@ a.play-at:hover { background: var(--accent); color: var(--nav-ink); }
 .yt-thumb { background-size: cover; background-position: center; position: relative; overflow: hidden; }
 .yt-thumb span { background: rgba(0, 0, 0, 0.72); color: #fff; padding: 10px 16px; border-radius: 999px; font: 600 0.95rem var(--f-ui); }
 .yt-thumb:hover span { background: #c4302b; }
-.chart-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 20px 28px; }
+.chart-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr)); gap: 20px 28px; max-width: 800px; min-width: 0; }
 .chart-grid .chart svg { width: 100%; height: auto; max-width: 380px; }
+.chart-grid .chart { min-width: 0; }
+.chart-grid .chart.big { grid-column: 1 / -1; }
+.chart-grid .chart.big svg { max-width: 760px; }
 /* YouTube player above the second-by-second chart */
 .player { display: grid; gap: 8px; max-width: 760px; }
 .player-frame { aspect-ratio: 16 / 9; width: 100%; background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; }

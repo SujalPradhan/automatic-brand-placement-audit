@@ -289,51 +289,60 @@ function costGrid(root, d) {
   const short = { apple_fullframe: "Apple, full frame", apple_8w: "Apple, 8 workers", apple_4w: "Apple, 4 workers",
     gemini: "Gemini Flash-Lite", cloud_vision: "Cloud Vision", vi: "Video Intelligence" };
   const fmtMin = (m) => (m >= 60 ? (m / 60).toFixed(1) + " h" : Math.round(m) + " min");
-  const X = {
-    cost: { title: "Cost per video hour", lo: 0.1, hi: 20, ticks: [0.1, 0.3, 1, 3, 10], fmt: (v) => "$" + v,
+  const fmtTick = (v) => (v >= 60 ? v / 60 + " h" : v + " min");
+  // every axis returns a [low, high] range per option; recall has none, so low = high
+  const AX = {
+    cost: { title: "Cost per video hour", log: true, lo: 0.1, hi: 20, ticks: [0.1, 0.3, 1, 3, 10], fmt: (v) => "$" + v,
       get: (o) => [o.usd_per_video_hour_low, o.usd_per_video_hour_high], show: (v) => "$" + v.toFixed(2) },
-    time: { title: "Time per video hour", lo: 5, hi: 300, ticks: [5, 15, 30, 60, 180], fmt: (v) => (v >= 60 ? v / 60 + " h" : v + " min"),
+    time: { title: "Time per video hour", log: true, lo: 5, hi: 300, ticks: [5, 15, 30, 60, 180], fmt: fmtTick,
       get: (o) => [o.minutes_per_video_hour_low ?? o.minutes_per_video_hour, o.minutes_per_video_hour], show: fmtMin },
+    large: { title: "Large boards found", lo: 0.4, hi: 1.0, ticks: [0.4, 0.6, 0.8, 1.0], fmt: (v) => Math.round(v * 100) + "%",
+      get: (o) => [o.recall_large, o.recall_large], show: (v) => Math.round(v * 100) + "%" },
+    small: { title: "Small boards found", lo: 0.0, hi: 0.7, ticks: [0, 0.2, 0.4, 0.6], fmt: (v) => Math.round(v * 100) + "%",
+      get: (o) => [o.recall_small, o.recall_small], show: (v) => Math.round(v * 100) + "%" },
   };
-  const Y = {
-    large: { title: "Large boards found", lo: 0.4, hi: 1.0, ticks: [0.4, 0.6, 0.8, 1.0], get: (o) => o.recall_large },
-    small: { title: "Small boards found", lo: 0.0, hi: 0.7, ticks: [0, 0.2, 0.4, 0.6], get: (o) => o.recall_small },
-  };
-  const panels = [["cost", "large"], ["cost", "small"], ["time", "large"], ["time", "small"]];
-  panels.forEach(([xk, yk]) => {
-    const ax = X[xk], ay = Y[yk];
-    const W = 380, L = 46, R = 16, T = 30, B = 40, H = 300;
+  // one big chart, then two below it
+  const panels = [["cost", "large", true], ["cost", "small", false], ["cost", "time", false]];
+  panels.forEach(([xk, yk, big]) => {
+    const ax = AX[xk], ay = AX[yk];
+    const W = big ? 760 : 380, H = big ? 400 : 300, L = big ? 56 : 52, R = 16, T = 30, B = 40;
     const lx = Math.log10;
-    const x = (v) => L + ((lx(v) - lx(ax.lo)) / (lx(ax.hi) - lx(ax.lo))) * (W - L - R);
-    const y = (v) => T + (1 - (v - ay.lo) / (ay.hi - ay.lo)) * (H - T - B);
+    const pos = (a, v, p0, p1) => p0 + (a.log ? (lx(v) - lx(a.lo)) / (lx(a.hi) - lx(a.lo)) : (v - a.lo) / (a.hi - a.lo)) * (p1 - p0);
+    const x = (v) => pos(ax, v, L, W - R), y = (v) => pos(ay, v, H - B, T);
+    const mid = (a, [lo, hi]) => (a.log ? Math.sqrt(lo * hi) : (lo + hi) / 2);
     const cell = document.createElement("div");
-    cell.className = "chart";
+    cell.className = "chart" + (big ? " big" : "");
     root.appendChild(cell);
     const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, width: W, height: H, role: "img",
-      "aria-label": `${ay.title} against ${ax.title.toLowerCase()} on a log scale` }, cell);
-    el("text", { x: 0, y: 14, class: "lbl" }, svg).textContent = `${ay.title} vs ${ax.title.toLowerCase()}`;
+      "aria-label": `${ay.title} against ${ax.title.toLowerCase()}, log scale` }, cell);
+    el("text", { x: 0, y: 14, class: "lbl" }, svg).textContent = `${ay.title} vs ${ax.title.toLowerCase()}${ay.log ? " (both log scale)" : ""}`;
     ax.ticks.forEach((v) => {
       el("line", { x1: x(v), x2: x(v), y1: T, y2: H - B, class: "grid" }, svg);
       el("text", { x: x(v), y: H - B + 16, "text-anchor": "middle", class: "small" }, svg).textContent = ax.fmt(v);
     });
     ay.ticks.forEach((v) => {
       el("line", { x1: L, x2: W - R, y1: y(v), y2: y(v), class: "grid" }, svg);
-      el("text", { x: L - 6, y: y(v) + 4, "text-anchor": "end", class: "small" }, svg).textContent = Math.round(v * 100) + "%";
+      el("text", { x: L - 6, y: y(v) + 4, "text-anchor": "end", class: "small" }, svg).textContent = ay.fmt(v);
     });
     el("text", { x: (L + W - R) / 2, y: H - 6, "text-anchor": "middle", class: "small" }, svg).textContent = ax.title + " (log scale)";
-    const placed = [];
-    [...pts].sort((a, b) => ay.get(b) - ay.get(a)).forEach((o) => {
-      const [lo, hi] = ax.get(o), mid = Math.sqrt(lo * hi), cx = x(mid), cy = y(ay.get(o));
+    const placed = pts.map((o) => { const px = x(mid(ax, ax.get(o))), py = y(mid(ay, ay.get(o))); return [px - 7, py - 7, 14, 14]; });
+    [...pts].sort((a, b) => mid(ay, ay.get(b)) - mid(ay, ay.get(a))).forEach((o) => {
+      const xr = ax.get(o), yr = ay.get(o), cx = x(mid(ax, xr)), cy = y(mid(ay, yr));
       const apple = o.id.startsWith("apple_");
-      if (hi > lo * 1.02) el("line", { x1: x(lo), x2: x(hi), y1: cy, y2: cy, stroke: "var(--ink-3)", "stroke-width": 2 }, svg);
-      el("circle", { cx, cy, r: 6, fill: apple ? "var(--s2)" : "var(--s1)", stroke: "var(--surface)", "stroke-width": 2 }, svg);
-      let ly = cy - 10;
-      while (placed.some(([px, py]) => Math.abs(px - cx) < 90 && Math.abs(py - ly) < 12)) ly += 24;
-      placed.push([cx, ly]);
-      const anchor = cx > W - 90 ? "end" : cx < L + 50 ? "start" : "middle";
-      el("text", { x: cx, y: ly, "text-anchor": anchor, class: "lbl small" }, svg).textContent = short[o.id] || o.name;
-      hover(el("circle", { cx, cy, r: 14, fill: "transparent" }, svg),
-        `<b>${o.name}</b><br>${ax.title}: ${ax.show(lo)}${hi > lo * 1.02 ? " to " + ax.show(hi) : ""}<br>${ay.title}: ${Math.round(ay.get(o) * 100)}%`);
+      if (xr[1] > xr[0] * 1.02) el("line", { x1: x(xr[0]), x2: x(xr[1]), y1: cy, y2: cy, stroke: "var(--ink-3)", "stroke-width": 2 }, svg);
+      if (yr[1] > yr[0] * 1.02) el("line", { x1: cx, x2: cx, y1: y(yr[0]), y2: y(yr[1]), stroke: "var(--ink-3)", "stroke-width": 2 }, svg);
+      el("circle", { cx, cy, r: big ? 7 : 6, fill: apple ? "var(--s2)" : "var(--s1)", stroke: "var(--surface)", "stroke-width": 2 }, svg);
+      // label beside its dot: try above, below, right, left; skip spots that overlap another label or dot
+      const name = short[o.id] || o.name, w = name.length * 6.2, h = 12;
+      const spots = [[cx - w / 2, cy - 12 - h], [cx - w / 2, cy + 12], [cx + 11, cy - h / 2], [cx - 11 - w, cy - h / 2],
+        [cx - w / 2, cy - 28 - h], [cx - w / 2, cy + 28], [cx + 11, cy - 20], [cx + 11, cy + 8], [cx - 11 - w, cy - 20], [cx - 11 - w, cy + 8]];
+      const hit = ([bx, by]) => bx < L - 4 || bx + w > W || by < T - 12 || by + h > H - B ||
+        placed.some((p) => bx < p[0] + p[2] && bx + w > p[0] && by < p[1] + p[3] && by + h > p[1]);
+      const [bx, by] = spots.find((sp) => !hit(sp)) || spots[0];
+      placed.push([bx, by, w, h]);
+      el("text", { x: bx, y: by + h - 2, class: "lbl small" }, svg).textContent = name;
+      const rng = (a, [lo, hi]) => a.show(lo) + (hi > lo * 1.02 ? " to " + a.show(hi) : "");
+      hover(el("circle", { cx, cy, r: 14, fill: "transparent" }, svg), `<b>${o.name}</b><br>${ax.title}: ${rng(ax, xr)}<br>${ay.title}: ${rng(ay, yr)}`);
     });
   });
 }
